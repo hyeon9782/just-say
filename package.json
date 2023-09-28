@@ -12,7 +12,8 @@
     "next": "latest",
     "openai": "^4.10.0",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-icons": "^4.11.0"
   },
   "devDependencies": {
     "@types/node": "latest",

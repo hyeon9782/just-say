@@ -1,5 +1,14 @@
+"use client";
+import { LeftArrow } from "@/composables/icons";
+import { useRouter } from "next/navigation";
+
 const Back = () => {
-  return <div>Back</div>;
+  const router = useRouter();
+  return (
+    <div onClick={() => router.back()}>
+      <LeftArrow className="text-6xl " />
+    </div>
+  );
 };
 
 export default Back;
