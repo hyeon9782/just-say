@@ -1,3 +1,4 @@
+import { CAFE_STAFF } from "@/constants/role";
 import { openai } from "@/libs/gpt";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -6,7 +7,10 @@ export async function POST(request: NextRequest) {
   console.log(question);
 
   const chatCompletion = await openai.chat.completions.create({
-    messages: [{ role: "user", content: `${question}` }],
+    messages: [
+      { role: "system", content: CAFE_STAFF },
+      { role: "user", content: `${question}` },
+    ],
     model: "gpt-3.5-turbo",
   });
 
