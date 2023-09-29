@@ -7,13 +7,13 @@ import { ReactNode } from "react";
 type Props = {
   children: ReactNode;
 };
-const NextButton = ({ children }: Props) => {
+const StartButton = ({ children }: Props) => {
   const router = useRouter();
   return (
-    <Button type="next" onClick={() => router.push("/language")}>
+    <Button type="start" onClick={() => router.push("/select")}>
       {children}
     </Button>
   );
 };
 
-export default NextButton;
+export default StartButton;

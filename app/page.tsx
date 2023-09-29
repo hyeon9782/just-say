@@ -1,4 +1,4 @@
-import NextButton from "@/components/NextButton";
+import StartButton from "@/components/StartButton";
 import Container from "@/composables/Container";
 import Image from "next/image";
 
@@ -11,10 +11,11 @@ export default function HomePage() {
           <p className="text-xl mb-[50px]">
             두려움없이 외국어를 말할 수 있도록. <br />될 때까지 말해보세요!
           </p>
-          <NextButton>시작하기</NextButton>
+          <StartButton>시작하기</StartButton>
         </div>
         <div>
           <Image
+            priority
             src={"/images/BG_IMG 1.png"}
             alt="BG_IMG 1"
             width={300}

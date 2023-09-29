@@ -1,11 +1,9 @@
 "use client";
 import { LeftArrow } from "@/composables/icons";
-import { useRouter } from "next/navigation";
 
-const Back = () => {
-  const router = useRouter();
+const Back = ({ onPrev }: { onPrev: () => void }) => {
   return (
-    <div onClick={() => router.back()}>
+    <div onClick={onPrev}>
       <LeftArrow className="text-6xl " />
     </div>
   );

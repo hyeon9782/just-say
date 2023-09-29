@@ -16,7 +16,7 @@ const Button = ({ children, onClick, type }: Props) => {
 function generateClassStr(type: string) {
   let classStr = "";
   switch (type) {
-    case "next":
+    case "start":
       classStr =
         "w-full bg-[blue] rounded-[50px] p-[22px] text-3xl font-bold text-white color";
       break;
