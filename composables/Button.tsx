@@ -18,11 +18,11 @@ function generateClassStr(type: string) {
   switch (type) {
     case "start":
       classStr =
-        "w-full bg-[blue] rounded-[50px] p-[22px] text-3xl font-bold text-white color";
+        "w-full bg-sky-blue rounded-[50px] p-[22px] text-3xl font-bold text-white color";
       break;
     case "outline":
       classStr =
-        "w-full border bg-white rounded-[50px] p-[22px] text-3xl font-bold text-black hover:bg-[blue] hover:text-white";
+        "w-full border border-sky-blue bg-white rounded-[50px] p-[22px] text-3xl font-bold text-sky-blue hover:bg-sky-blue hover:text-white";
       break;
   }
   return classStr;

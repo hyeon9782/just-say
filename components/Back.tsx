@@ -4,7 +4,7 @@ import { LeftArrow } from "@/composables/icons";
 const Back = ({ onPrev }: { onPrev: () => void }) => {
   return (
     <div onClick={onPrev}>
-      <LeftArrow className="text-6xl " />
+      <LeftArrow className="text-7xl pt-[10px]" />
     </div>
   );
 };
