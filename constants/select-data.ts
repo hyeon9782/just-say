@@ -63,10 +63,12 @@ export const SELECT_DATA = {
     {
       ko: "카페",
       en: "cafe",
+      img: "/images/준비_카페.png",
     },
     {
       ko: "택시",
       en: "taxi",
+      img: "/images/준비_택시.png",
     },
   ],
 };

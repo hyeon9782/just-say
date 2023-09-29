@@ -10,6 +10,12 @@ export type Language = {
   en: string;
 };
 
+export type Situation = {
+  ko: string;
+  en: string;
+  img: string;
+};
+
 export type SelectedData = {
   language: string;
   city: string;

@@ -6,6 +6,8 @@
 
 ## Migration
 
+### Stack
+
 JavaScript -> TypeScript
 
 React -> Next
@@ -15,6 +17,24 @@ Axios -> Fetch
 Jotai -> Context API
 
 Styled Components -> TailwindCSS
+
+### 진행 상황
+
+<input type="checkbox" /> UI 마크업
+
+1. <input type="checkbox" checked /> 메인 페이지 마크업
+2. <input type="checkbox" checked /> 선택 페이지 마크업
+3. <input type="checkbox" checked /> 준비 페이지 마크업
+4. <input type="checkbox" /> 대화 페이지 마크업
+5. <input type="checkbox" /> 결과 페이지 마크업
+
+<input type="checkbox" /> 기능 구현
+
+1. <input type="checkbox" /> Web Speech API를 활용한 Speech to Text 기능
+2. <input type="checkbox" /> OpenAI Chat Completions API를 활용한 대화 기능
+3. <input type="checkbox" /> Amazon API를 활용한 Text to Speech 기능
+4. <input type="checkbox" /> AI와 나눴던 대화 다시보기 기능
+5. <input type="checkbox" /> 초보자를 위한 답변 추천 기능
 
 ## 주요 기능
 

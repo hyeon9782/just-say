@@ -4,6 +4,7 @@ import CityArea from "@/components/select/CityArea";
 import LanguageArea from "@/components/select/LanguageArea";
 import SituationArea from "@/components/select/SituationArea";
 import Container from "@/composables/Container";
+import { SelectedData } from "@/types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
@@ -12,13 +13,13 @@ const SelectPage = () => {
   const [step, setStep] = useState<"언어선택" | "도시선택" | "상황선택">(
     "언어선택"
   );
-  const [selectedData, setSelectedData] = useState<SelectData>({
+  const [selectedData, setSelectedData] = useState<SelectedData>({
     language: "",
     city: "",
     situation: "",
   });
 
-  const nextStep = () => {
+  const nextStep = (situation?: string) => {
     switch (step) {
       case "언어선택":
         setStep("도시선택");
@@ -27,7 +28,7 @@ const SelectPage = () => {
         setStep("상황선택");
         break;
       case "상황선택":
-        router.push("/ready");
+        router.push(`/ready?situation=${situation}`);
         break;
       default:
         alert("잘못된 값입니다.");
@@ -55,7 +56,7 @@ const SelectPage = () => {
       ...prevData,
       [key]: value,
     }));
-    nextStep();
+    nextStep(key === "situation" ? value : "");
     console.log(selectedData);
   };
   return (
