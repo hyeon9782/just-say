@@ -1,6 +1,4 @@
 export const SELECT_DATA = {
-  // LANGUAGES: ["영어", "일본어"],
-  // CITIES: ["뉴욕", "런던", "시드니", "더블린"],
   LANGUAGES: [
     {
       ko: "영어",
@@ -61,5 +59,14 @@ export const SELECT_DATA = {
       language: "jp",
     },
   ],
-  SITUATIONS: ["카페", "택시"],
+  SITUATIONS: [
+    {
+      ko: "카페",
+      en: "cafe",
+    },
+    {
+      ko: "택시",
+      en: "taxi",
+    },
+  ],
 };
