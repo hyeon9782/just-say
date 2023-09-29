@@ -7,12 +7,6 @@ import Container from "@/composables/Container";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-type SelectData = {
-  language: string;
-  city: string;
-  situation: string;
-};
-
 const SelectPage = () => {
   const router = useRouter();
   const [step, setStep] = useState<"언어선택" | "도시선택" | "상황선택">(
@@ -68,8 +62,12 @@ const SelectPage = () => {
     <Container>
       <Back onPrev={prevStep} />
       {step === "언어선택" && <LanguageArea onSelect={selectData} />}
-      {step === "도시선택" && <CityArea onSelect={selectData} />}
-      {step === "상황선택" && <SituationArea onSelect={selectData} />}
+      {step === "도시선택" && (
+        <CityArea onSelect={selectData} selectedData={selectedData} />
+      )}
+      {step === "상황선택" && (
+        <SituationArea onSelect={selectData} selectedData={selectedData} />
+      )}
     </Container>
   );
 };

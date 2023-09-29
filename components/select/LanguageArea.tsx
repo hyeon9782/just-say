@@ -13,11 +13,11 @@ const LanguageArea = ({ onSelect }: Props) => {
       <div className="flex gap-[50px]">
         {SELECT_DATA.LANGUAGES.map((language) => (
           <Button
-            key={language}
+            key={language.en}
             type="outline"
-            onClick={() => onSelect("language", language)}
+            onClick={() => onSelect("language", language.en)}
           >
-            {language}
+            {language.ko}
           </Button>
         ))}
       </div>
