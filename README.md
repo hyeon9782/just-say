@@ -20,11 +20,19 @@ Styled Components -> TailwindCSS
 
 ### 진행 상황
 
-<input type="checkbox" /> UI 마크업
+<input type="checkbox" /> UI 마크업 (PC)
 
 1. <input type="checkbox" checked /> 메인 페이지 마크업
 2. <input type="checkbox" checked /> 선택 페이지 마크업
 3. <input type="checkbox" checked /> 준비 페이지 마크업
+4. <input type="checkbox" checked /> 대화 페이지 마크업
+5. <input type="checkbox" checked /> 결과 페이지 마크업
+
+<input type="checkbox" /> UI 마크업 (Mobile)
+
+1. <input type="checkbox" /> 메인 페이지 마크업
+2. <input type="checkbox" /> 선택 페이지 마크업
+3. <input type="checkbox" /> 준비 페이지 마크업
 4. <input type="checkbox" /> 대화 페이지 마크업
 5. <input type="checkbox" /> 결과 페이지 마크업
 
