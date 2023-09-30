@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 
-const useSpeechToText = (isRecording: boolean, lang: string) => {
-  const [content, setContent] = useState("");
+type SpeechToText = {
+  isRecording: boolean;
+  lang: string;
+};
+
+const useSpeechToText = ({ isRecording, lang }: SpeechToText): string => {
+  const [content, setContent] = useState<string>("");
 
   useEffect(() => {
-    let recognition = null;
+    const SpeechRecognition =
+      window.SpeechRecognition || window.webkitSpeechRecognition;
+    let recognition: any = null;
 
-    const handleResult = (event) => {
+    const handleResult = (event: any) => {
       const results = event.results;
-      const contents = [];
+      const contents: string[] = [];
       Object.keys(results).forEach((key) =>
         contents.push(results[key][0].transcript)
       );
@@ -17,18 +24,16 @@ const useSpeechToText = (isRecording: boolean, lang: string) => {
     };
 
     if (isRecording) {
-      recognition = new window.webkitSpeechRecognition();
+      recognition = new SpeechRecognition();
       recognition.continuous = true;
       recognition.lang = lang;
       recognition.onresult = handleResult;
-      recognition.onerror = (event) => {
+      recognition.onerror = (event: any) => {
         console.error(event.error);
       };
       recognition.start();
-    } else {
-      if (recognition) {
-        recognition.stop();
-      }
+    } else if (recognition) {
+      recognition.stop();
     }
 
     return () => {
@@ -36,7 +41,7 @@ const useSpeechToText = (isRecording: boolean, lang: string) => {
         recognition.stop();
       }
     };
-  }, [isRecording]);
+  }, [isRecording, lang]);
 
   return content;
 };

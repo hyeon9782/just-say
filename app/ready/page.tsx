@@ -12,7 +12,7 @@ const ReadyPage = () => {
   const situationParam = params.get("situation");
   const cityParam = params.get("city");
   const [isRecording, setIsRecording] = useState(false);
-  let text = useSpeechToText(isRecording, "en-US");
+  let text = useSpeechToText({ isRecording, lang: "en-US" });
   const situation = SELECT_DATA.SITUATIONS.find(
     (situation) => situation.en === situationParam
   );
