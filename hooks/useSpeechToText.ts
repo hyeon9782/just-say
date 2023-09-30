@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useSpeechToText = ({ isRecording }) => {
+const useSpeechToText = (isRecording: boolean, lang: string) => {
   const [content, setContent] = useState("");
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const useSpeechToText = ({ isRecording }) => {
     if (isRecording) {
       recognition = new window.webkitSpeechRecognition();
       recognition.continuous = true;
-      recognition.lang = "en-US";
+      recognition.lang = lang;
       recognition.onresult = handleResult;
       recognition.onerror = (event) => {
         console.error(event.error);
