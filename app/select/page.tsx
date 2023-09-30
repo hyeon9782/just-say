@@ -19,7 +19,7 @@ const SelectPage = () => {
     situation: "",
   });
 
-  const nextStep = (situation?: string) => {
+  const nextStep = (situation?: string, city?: string) => {
     switch (step) {
       case "언어선택":
         setStep("도시선택");
@@ -28,7 +28,7 @@ const SelectPage = () => {
         setStep("상황선택");
         break;
       case "상황선택":
-        router.push(`/ready?situation=${situation}`);
+        router.push(`/ready?situation=${situation}&city=${city}`);
         break;
       default:
         alert("잘못된 값입니다.");
@@ -56,7 +56,7 @@ const SelectPage = () => {
       ...prevData,
       [key]: value,
     }));
-    nextStep(key === "situation" ? value : "");
+    nextStep(key === "situation" ? value : "", selectedData.city);
     console.log(selectedData);
   };
   return (
