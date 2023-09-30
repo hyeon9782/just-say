@@ -4,6 +4,7 @@ import CityArea from "@/components/select/CityArea";
 import LanguageArea from "@/components/select/LanguageArea";
 import SituationArea from "@/components/select/SituationArea";
 import Container from "@/composables/Container";
+import useCustomBack from "@/hooks/useCustomBack";
 import { SelectedData } from "@/types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -36,6 +37,8 @@ const SelectPage = () => {
   };
 
   const prevStep = () => {
+    console.log("발동");
+
     switch (step) {
       case "언어선택":
         router.push("/");
@@ -59,6 +62,8 @@ const SelectPage = () => {
     nextStep(key === "situation" ? value : "", selectedData.city);
     console.log(selectedData);
   };
+
+  useCustomBack({ customBack: prevStep });
   return (
     <Container>
       <Back onPrev={prevStep} />
