@@ -2,19 +2,25 @@
 import Button from "@/composables/Button";
 import Container from "@/composables/Container";
 import { SELECT_DATA } from "@/constants/select-data";
+import useSpeechToText from "@/hooks/useSpeechToText";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const ReadyPage = () => {
   const params = useSearchParams();
   const router = useRouter();
   const situationParam = params.get("situation");
   const cityParam = params.get("city");
+  const [isRecording, setIsRecording] = useState(false);
+  let text = useSpeechToText({ isRecording });
   const situation = SELECT_DATA.SITUATIONS.find(
     (situation) => situation.en === situationParam
   );
   const city = SELECT_DATA.CITIES.find((city) => city.en === cityParam);
 
-  const handleMikeTestStart = () => {};
+  const handleMikeTest = () => {
+    setIsRecording(!isRecording);
+  };
 
   return (
     <Container>
@@ -36,11 +42,13 @@ const ReadyPage = () => {
           </p>
         </div>
         <div className="flex justify-center pb-[30px]">
-          <div className="h-[300px] w-[70%] bg-white overflow-auto rounded-2xl opacity-70"></div>
+          <div className="h-[300px] w-[70%] bg-white overflow-auto rounded-2xl opacity-70 py-[10px] px-[15px]">
+            {text}
+          </div>
         </div>
         <div className="flex gap-[50px]">
-          <Button type="start" onClick={() => console.log("테스트 시작")}>
-            마이크 테스트
+          <Button type="start" onClick={handleMikeTest}>
+            {isRecording ? "마이크 테스트 종료" : "마이크 테스트 시작"}
           </Button>
           <Button
             type="start"
