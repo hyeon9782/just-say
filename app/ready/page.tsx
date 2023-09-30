@@ -2,10 +2,11 @@
 import Button from "@/composables/Button";
 import Container from "@/composables/Container";
 import { SELECT_DATA } from "@/constants/select-data";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const ReadyPage = () => {
   const params = useSearchParams();
+  const router = useRouter();
   const situationParam = params.get("situation");
   const cityParam = params.get("city");
   const situation = SELECT_DATA.SITUATIONS.find(
@@ -41,7 +42,10 @@ const ReadyPage = () => {
           <Button type="start" onClick={() => console.log("테스트 시작")}>
             마이크 테스트
           </Button>
-          <Button type="start" onClick={() => console.log("대화 시작")}>
+          <Button
+            type="start"
+            onClick={() => router.push(`/talk?situation=${situation?.en}`)}
+          >
             대화 시작
           </Button>
         </div>
