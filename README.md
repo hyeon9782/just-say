@@ -20,37 +20,37 @@ Styled Components -> TailwindCSS
 
 ### 진행 상황
 
-[x] UI 마크업 (PC)
+- [x] UI 마크업 (PC)
 
-- [x] 메인 페이지 마크업
-- [x] 선택 페이지 마크업
-- [x] 준비 페이지 마크업
-- [x] 대화 페이지 마크업
-- [x] 결과 페이지 마크업
+  - [x] 메인 페이지 마크업
+  - [x] 선택 페이지 마크업
+  - [x] 준비 페이지 마크업
+  - [x] 대화 페이지 마크업
+  - [x] 결과 페이지 마크업
 
-[ ] UI 마크업 (Mobile)
+- [ ] UI 마크업 (Mobile)
 
-- [ ] 메인 페이지 마크업
-- [ ] 선택 페이지 마크업
-- [ ] 준비 페이지 마크업
-- [ ] 대화 페이지 마크업
-- [ ] 결과 페이지 마크업
+  - [ ] 메인 페이지 마크업
+  - [ ] 선택 페이지 마크업
+  - [ ] 준비 페이지 마크업
+  - [ ] 대화 페이지 마크업
+  - [ ] 결과 페이지 마크업
 
-[ ] 기능 구현
+- [ ] 기능 구현
 
-- [ ] Web Speech API를 활용한 Speech to Text 기능
-- [ ] OpenAI Chat Completions API를 활용한 대화 기능
-- [ ] Amazon API를 활용한 Text to Speech 기능
-- [ ] AI와 나눴던 대화 다시보기 기능
-- [ ] 초보자를 위한 답변 추천 기능
+  - [ ] Web Speech API를 활용한 Speech to Text 기능
+  - [ ] OpenAI Chat Completions API를 활용한 대화 기능
+  - [ ] Amazon API를 활용한 Text to Speech 기능
+  - [ ] AI와 나눴던 대화 다시보기 기능
+  - [ ] 초보자를 위한 답변 추천 기능
 
-[ ] 공통 컴포넌트 구현
+- [ ] 공통 컴포넌트 구현
 
-- [ ] Button 컴포넌트
-- [ ] Container 컴포넌트
-- [ ] Title 컴포넌트
-- [ ] Modal 컴포넌트
-- [ ] Toast 컴포넌트
+  - [ ] Button 컴포넌트
+  - [ ] Container 컴포넌트
+  - [ ] Title 컴포넌트
+  - [ ] Modal 컴포넌트
+  - [ ] Toast 컴포넌트
 
 ## 주요 기능
 
