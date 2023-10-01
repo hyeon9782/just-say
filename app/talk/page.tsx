@@ -40,10 +40,7 @@ const TalkPage = () => {
           </div>
         </div>
         <div className="h-[30%] box-border flex flex-col justify-center items-center">
-          <span className="text-xl pt-[10px] pb-[20px]">
-            마이크를 클릭하여 대화를 시작하세요!
-          </span>
-          <GptForm />
+          {/* <GptForm /> */}
           <TalkButton />
         </div>
       </div>
