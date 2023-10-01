@@ -1,6 +1,6 @@
 import { create } from "zustand";
 
-type Message = {
+export type Message = {
   role: string;
   content: string;
 };

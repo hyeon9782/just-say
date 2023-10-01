@@ -1,4 +1,5 @@
 "use client";
+import GptForm from "@/components/GptForm";
 import TalkButton from "@/components/talk/TalkButton";
 import Container from "@/composables/Container";
 import { SELECT_DATA } from "@/constants/select-data";
@@ -42,6 +43,7 @@ const TalkPage = () => {
           <span className="text-xl pt-[10px] pb-[20px]">
             마이크를 클릭하여 대화를 시작하세요!
           </span>
+          <GptForm />
           <TalkButton />
         </div>
       </div>

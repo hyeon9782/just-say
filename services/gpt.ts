@@ -1,18 +1,11 @@
-import { CAFE_STAFF } from "@/constants/role";
+import { Message } from "@/stores/useMessageStore";
 
-// 전역 상태에서 관리하자
-const generatePrompt = (sentence: string) => {
-  const messages: {}[] = [
-    {
-      role: "system",
-      content: CAFE_STAFF,
+export const gptAPI = async (messages: Message[]) => {
+  return fetch("/api/gpt", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
     },
-  ];
-  messages.push({
-    role: "user",
-    content: sentence,
+    body: JSON.stringify({ messages }),
   });
-  return messages;
 };
-
-export { generatePrompt };
