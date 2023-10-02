@@ -21,3 +21,29 @@ export type SelectedData = {
   city: string;
   situation: string;
 };
+
+export type TextToSpeech = {
+  rate?: number;
+  pitch?: number;
+  volume?: number;
+  lang?: string;
+  text: string;
+};
+
+export type InitGPT = {
+  lang: string;
+  type: string;
+};
+
+export type Message = {
+  role: string;
+  content: string;
+};
+
+export type MessagesAction = {
+  setMessages: (newMessage: Message) => void;
+};
+
+export type Messages = {
+  messages: Message[];
+};

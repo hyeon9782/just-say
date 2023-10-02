@@ -1,17 +1,5 @@
+import { Messages, MessagesAction } from "@/types";
 import { create } from "zustand";
-
-export type Message = {
-  role: string;
-  content: string;
-};
-
-type MessagesAction = {
-  setMessages: (newMessage: Message) => void;
-};
-
-type Messages = {
-  messages: Message[];
-};
 
 const useMessageStore = create<Messages | MessagesAction>((set) => ({
   messages: [],
