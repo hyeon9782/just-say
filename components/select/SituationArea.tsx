@@ -22,6 +22,7 @@ const SituationArea = ({ onSelect, selectedData }: Props) => {
           <Button
             key={situation.en}
             type="outline"
+            size="lg"
             onClick={() => onSelect("situation", situation.en)}
           >
             {situation.ko}

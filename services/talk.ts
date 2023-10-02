@@ -48,4 +48,8 @@ const initGPT = ({ type, lang }: InitGPT) => {
   return content;
 };
 
-export { textToSpeech, initGPT };
+const checkEnd = (answer: string) => {
+  return answer.includes("@@");
+};
+
+export { textToSpeech, initGPT, checkEnd };

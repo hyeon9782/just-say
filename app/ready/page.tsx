@@ -48,11 +48,12 @@ const ReadyPage = () => {
           </div>
         </div>
         <div className="flex gap-[50px]">
-          <Button type="start" onClick={handleMikeTest}>
+          <Button type="fill" size="lg" onClick={handleMikeTest}>
             {isRecording ? "마이크 테스트 종료" : "마이크 테스트 시작"}
           </Button>
           <Button
-            type="start"
+            type="fill"
+            size="lg"
             onClick={() => router.push(`/talk?situation=${situation?.en}`)}
           >
             대화 시작

@@ -4,6 +4,7 @@ import {
   AiFillLike,
   AiOutlineDislike,
   AiOutlineLike,
+  AiOutlineClose,
 } from "react-icons/ai";
 import { MdKeyboardVoice } from "react-icons/md";
 
@@ -18,3 +19,5 @@ export const LikeIcon = AiOutlineLike;
 export const FillDislikeIcon = AiFillDislike;
 
 export const DislikeIcon = AiOutlineDislike;
+
+export const CloseIcon = AiOutlineClose;

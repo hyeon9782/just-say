@@ -77,7 +77,7 @@ const TalkButton = () => {
   }, [text, isRecording]);
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center ">
       <p>{text}</p>
       <span className="text-xl pt-[10px] pb-[20px]">
         {isRecording
@@ -85,10 +85,12 @@ const TalkButton = () => {
           : "마이크를 클릭하여 대화를 시작하세요!"}
       </span>
       <div
-        className="border border-sky-blue rounded-full w-[100px] h-[100px] flex justify-center items-center"
+        className={`border border-sky-blue rounded-full w-[100px] h-[100px] flex justify-center items-center ${
+          isRecording ? "bg-sky-blue text-white" : "bg-white text-sky-blue"
+        }`}
         onClick={handleClick}
       >
-        <VoiceIcon className="text-7xl text-sky-blue" />
+        <VoiceIcon className="text-7xl " />
       </div>
     </div>
   );
