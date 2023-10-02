@@ -3,8 +3,9 @@ import Button from "@/composables/Button";
 import Container from "@/composables/Container";
 import { SELECT_DATA } from "@/constants/select-data";
 import useSpeechToText from "@/hooks/useSpeechToText";
+
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const ReadyPage = () => {
   const params = useSearchParams();
