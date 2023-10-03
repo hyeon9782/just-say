@@ -5,7 +5,7 @@ type Props = {
 };
 const LanguageArea = ({ onSelect }: Props) => {
   return (
-    <div className="flex flex-col justify-center select-container">
+    <div className="flex flex-col justify-center select-container px-[10px]">
       <p className="text-4xl font-bold leading-normal mb-[50px]">
         이제부터 여행을 떠나봅시다! <br />
         내가 말할 언어를 골라주세요.
