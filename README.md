@@ -46,10 +46,10 @@ Styled Components -> TailwindCSS
 
 - [ ] 공통 컴포넌트 구현
 
-  - [ ] Button 컴포넌트
-  - [ ] Container 컴포넌트
+  - [x] Button 컴포넌트
+  - [x] Container 컴포넌트
   - [ ] Title 컴포넌트
-  - [ ] Modal 컴포넌트
+  - [x] Modal 컴포넌트
   - [ ] Toast 컴포넌트
 
 ## 주요 기능
