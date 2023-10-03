@@ -1,4 +1,3 @@
-import Button from "@/composables/Button";
 import Modal from "@/composables/Modal";
 import { CloseIcon } from "@/composables/icons";
 import Image from "next/image";

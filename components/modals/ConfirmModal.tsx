@@ -1,4 +1,5 @@
 import Button from "@/composables/Button";
+import Modal from "@/composables/Modal";
 import React from "react";
 type Props = {
   onSubmit?: (value: any) => void;
@@ -24,14 +25,16 @@ const ConfirmModal = ({
     onClose();
   };
   return (
-    <div>
-      <div className="text-3xl">{title}</div>
-      <div className="text-xl">{content}</div>
-      <div className="flex justify-around">
-        <Button onClick={handleClickCancel}>닫기</Button>
-        <Button onClick={handleClickSubmit}>확인</Button>
+    <Modal>
+      <div className="bg-white rounded-xl p-[20px]">
+        <div className="text-3xl">{title}</div>
+        <div className="text-xl py-[20px]">{content}</div>
+        <div className="flex gap-[20px]">
+          <Button onClick={handleClickCancel}>닫기</Button>
+          <Button onClick={handleClickSubmit}>확인</Button>
+        </div>
       </div>
-    </div>
+    </Modal>
   );
 };
 
