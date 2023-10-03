@@ -8,16 +8,16 @@ type Props = {
 const MenuModal = ({ onClose }: Props) => {
   return (
     <Modal>
-      <div className="text-red bg-white w-[50%] h-[30%] rounded-xl">
-        <div className="flex justify-end">
+      <div className="text-red bg-white rounded-xl p-[20px]">
+        <div className="flex justify-end" onClick={() => onClose()}>
           <CloseIcon className="text-2xl" />
         </div>
         <div>
           <Image
             src="/images/new-menu.png"
             alt="Menu"
-            width={100}
-            height={300}
+            width={400}
+            height={800}
           />
         </div>
       </div>
