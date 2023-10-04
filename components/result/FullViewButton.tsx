@@ -1,10 +1,12 @@
 "use client";
 import Button from "@/composables/Button";
-
-const FullViewButton = () => {
+type Props = {
+  onClick: () => void;
+};
+const FullViewButton = ({ onClick }: Props) => {
   return (
     <div className="pt-[20px]">
-      <Button type="view" onClick={() => console.log("전체 대화 보기")}>
+      <Button type="view" onClick={onClick}>
         전체 대화 보기
       </Button>
     </div>

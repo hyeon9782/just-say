@@ -16,7 +16,7 @@ const MenuModal = ({ onClose }: Props) => {
             src="/images/new-menu.png"
             alt="Menu"
             width={400}
-            height={800}
+            height={400}
           />
         </div>
       </div>
