@@ -3,6 +3,7 @@ import ReplayModal from "@/components/modals/ReplayModal";
 import FullViewButton from "@/components/result/FullViewButton";
 import LikeBox from "@/components/result/LikeBox";
 import Container from "@/composables/Container";
+import { SpeakerIcon } from "@/composables/icons";
 import { useState } from "react";
 const TAGS = [
   "언어 바꾸기",
@@ -39,6 +40,7 @@ const ResultPage = () => {
             <LikeBox />
             <FullViewButton onClick={() => setReplayModal(true)} />
           </div>
+          <SpeakerIcon />
         </div>
       </Container>
       {replayModal && <ReplayModal onClose={() => setReplayModal(false)} />}

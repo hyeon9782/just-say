@@ -1,38 +1,52 @@
+"use client";
 import Button from "@/composables/Button";
 import Modal from "@/composables/Modal";
+import { SpeakerIcon } from "@/composables/icons";
+import { textToSpeech } from "@/services/talk";
 import useMessageStore from "@/stores/useMessageStore";
-import { Messages, MessagesAction } from "@/types";
 type Props = {
   onClose: () => void;
 };
 const ReplayModal = ({ onClose }: Props) => {
   const { messages } = useMessageStore();
 
+  const handleReplay = (content: string) => {
+    textToSpeech({ text: content });
+  };
   return (
     <Modal>
-      <div className="bg-blue-300 p-[20px] rounded-xl min-w-[500px]">
-        <div className="flex flex-col gap-[10px]">
-          {messages.map((message, index) => {
+      <div className="bg-blue-300 p-[20px] rounded-xl min-w-[400px] min-h-[500px] flex flex-col justify-between">
+        <div className="flex flex-col gap-[10px] overflow-auto max-h-[350px] scroll-m-2">
+          {messages?.map((message, index) => {
             if (message.role === "user") {
               return (
                 <div
                   key={index}
-                  className="rounded-md px-[10px] py-[5px] bg-yellow-300 max-w-[400px] self-start break-words"
+                  className="rounded-md px-[10px] py-[5px] bg-yellow-300 max-w-[300px] self-start break-words flex gap-[10px]"
                 >
-                  나 : {message.content}{" "}
+                  <span>{message.content}</span>
+                  <SpeakerIcon
+                    className="text-xl"
+                    onClick={() => handleReplay(message.content)}
+                  />
                 </div>
               );
             } else if (message.role === "assistant") {
               return (
                 <div
                   key={index}
-                  className="bg-white rounded-md px-[10px] py-[5px] max-w-[400px] self-end break-words"
+                  className="bg-white rounded-md px-[10px] py-[5px] max-w-[300px] self-end break-words flex gap-[10px]"
                 >
-                  직원 : {message.content}
+                  <span>{message.content}</span>
+
+                  <SpeakerIcon
+                    className="text-xl"
+                    onClick={() => handleReplay(message.content)}
+                  />
                 </div>
               );
             } else {
-              return <></>;
+              return <div key={index}></div>;
             }
           })}
         </div>
