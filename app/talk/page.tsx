@@ -42,8 +42,8 @@ const TalkPage = () => {
             <div className="h-[70%] text-center">
               <Suggestion />
             </div>
-            <div className="flex w-full justify-around h-[20%]">
-              <h1 className="text-4xl font-bold mb-[30px]">
+            <div className="flex w-full justify-around h-[20%] px-[10px]">
+              <h1 className="text-xl sm:text-4xl font-bold mb-[30px]">
                 메뉴를 보고, 카페에서 내가 먹고 싶은 것을 주문해 보세요.
               </h1>
               <div
@@ -53,10 +53,10 @@ const TalkPage = () => {
                 <Image
                   src={"/images/document 1.png"}
                   alt="메뉴"
-                  width={40}
+                  width={50}
                   height={40}
                 />
-                <span className="text-s">메뉴판</span>
+                <span className="text-sm">메뉴판</span>
               </div>
             </div>
           </div>
