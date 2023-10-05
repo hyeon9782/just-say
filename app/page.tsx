@@ -11,7 +11,7 @@ export default function HomePage() {
             Just Say!
           </h1>
           <Image
-            className="sm:hidden mb-[20px]"
+            className="sm:hidden mb-[40px]"
             priority
             src={"/images/BG_IMG 1.png"}
             alt="BG_IMG 1"

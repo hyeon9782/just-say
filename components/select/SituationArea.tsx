@@ -9,15 +9,15 @@ type Props = {
 const SituationArea = ({ onSelect, selectedData }: Props) => {
   return (
     <div className="flex flex-col justify-center select-container px-[10px]">
-      <div>
-        <h1 className="text-4xl font-bold pb-[30px]">
+      <div className="text-center">
+        <h1 className="text-2xl sm:text-4xl font-bold pb-[30px]">
           어떤 상황에서 대화를 하고 싶으세요?
         </h1>
-        <p className="text-xl font-400 pb-[60px]">
+        <p className="text-lg sm:text-xl font-400 pb-[60px]">
           선택한 상황이 대화할 상대방에게 반영됩니다.
         </p>
       </div>
-      <div className="flex gap-[50px]">
+      <div className="flex flex-col sm:flex-row gap-[20px] sm:gap-[50px]">
         {SELECT_DATA.SITUATIONS.map((situation) => (
           <Button
             key={situation.en}

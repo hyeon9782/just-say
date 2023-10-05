@@ -19,7 +19,7 @@ function generateClassStr(type: string, size?: string) {
   switch (type) {
     case "fill":
       classStr =
-        "w-full bg-sky-blue rounded-[50px] font-bold text-white color text-xl sm:text-3xl";
+        "w-full bg-sky-blue rounded-[50px] font-bold text-white color text-xl";
       break;
     case "outline":
       classStr = `w-full border border-sky-blue bg-white rounded-[50px] font-bold text-sky-blue hover:bg-sky-blue hover:text-white`;
@@ -30,13 +30,13 @@ function generateClassStr(type: string, size?: string) {
 
   switch (size) {
     case "sm":
-      classStr += " text-xl py-[10px]";
+      classStr += " text-md sm:text-xl py-[4px] sm:py-[10px]";
       break;
     case "md":
-      classStr += " text-2xl py-[15px]";
+      classStr += " text-lg sm:text-2xl py-[8px] sm:py-[15px]";
       break;
     case "lg":
-      classStr += " text-3xl py-[20px]";
+      classStr += " text-xl sm:text-3xl py-[10px] sm:py-[20px]";
       break;
   }
 
