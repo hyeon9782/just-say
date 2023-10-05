@@ -20,7 +20,7 @@ const config: Config = {
     },
   },
   plugins: [
-    function ({ addUtilities }) {
+    function ({ addUtilities }: { addUtilities: any }) {
       const newUtilities = {
         ".select-container": {
           height: "calc(100% - 72px)",

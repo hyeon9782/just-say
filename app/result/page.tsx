@@ -40,7 +40,6 @@ const ResultPage = () => {
             <LikeBox />
             <FullViewButton onClick={() => setReplayModal(true)} />
           </div>
-          <SpeakerIcon />
         </div>
       </Container>
       {replayModal && <ReplayModal onClose={() => setReplayModal(false)} />}
