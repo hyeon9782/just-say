@@ -11,7 +11,7 @@ const CityArea = ({ onSelect, selectedData }: Props) => {
     (city) => city.language === selectedData.language
   );
   return (
-    <div className="flex flex-col justify-center box-border min-h-[700px] p-[10px]">
+    <div className="flex flex-col justify-center mt-[60px] box-border sm:min-h-[700px] p-[10px]">
       <div className="text-center">
         <h1 className="text-2xl sm:text-4xl font-bold pb-[30px]">
           어디로 갈까요?
@@ -20,7 +20,7 @@ const CityArea = ({ onSelect, selectedData }: Props) => {
           선택한 도시의 억양이 내가 대화할 상대방에게 반영됩니다.
         </p>
       </div>
-      <div className="flex flex-col sm:flex-row items-center flex-wrap justify-between gap-[30px] sm:gap-[60px]">
+      <div className="flex items-center flex-wrap justify-between gap-[30px] sm:gap-[40px]">
         {selectCities.map((city, index) => (
           <Card
             key={index}

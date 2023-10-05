@@ -28,14 +28,14 @@ const ResultPage = () => {
             {TAGS.map((tag, index) => (
               <div
                 key={index}
-                className="border border-sky-blue rounded-3xl text-sky-blue bg-[#F9FAFC] px-[15px] py-[5px] text-2xl"
+                className="border border-sky-blue rounded-3xl text-sky-blue bg-[#F9FAFC] px-[15px] py-[5px] text-lg sm:text-2xl"
               >
                 {tag}
               </div>
             ))}
           </div>
           <div className="flex flex-col items-center my-[30px]">
-            <span className="text-xl">대화는 어떠셨나요?</span>
+            <span className="text-lg sm:text-xl">대화는 어떠셨나요?</span>
             <LikeBox />
             <FullViewButton onClick={() => setReplayModal(true)} />
           </div>

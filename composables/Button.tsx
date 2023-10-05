@@ -24,7 +24,7 @@ function generateClassStr(type: string, size?: string) {
       classStr = `w-full border border-sky-blue bg-white rounded-[50px] font-bold text-sky-blue hover:bg-sky-blue hover:text-white`;
       break;
     case "view":
-      classStr = "rounded-3xl py-[5px] px-[25px] text-xl bg-[#D9EFF7]";
+      classStr = "rounded-3xl py-[5px] px-[25px] bg-[#D9EFF7]";
   }
 
   switch (size) {
