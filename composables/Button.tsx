@@ -18,8 +18,7 @@ function generateClassStr(type: string, size?: string) {
   let classStr = "";
   switch (type) {
     case "fill":
-      classStr =
-        "w-full bg-sky-blue rounded-[50px] font-bold text-white color text-xl";
+      classStr = "w-full bg-sky-blue rounded-[50px] font-bold text-white color";
       break;
     case "outline":
       classStr = `w-full border border-sky-blue bg-white rounded-[50px] font-bold text-sky-blue hover:bg-sky-blue hover:text-white`;

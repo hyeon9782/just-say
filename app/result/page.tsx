@@ -3,7 +3,6 @@ import ReplayModal from "@/components/modals/ReplayModal";
 import FullViewButton from "@/components/result/FullViewButton";
 import LikeBox from "@/components/result/LikeBox";
 import Container from "@/composables/Container";
-import { SpeakerIcon } from "@/composables/icons";
 import { useState } from "react";
 const TAGS = [
   "언어 바꾸기",
@@ -18,14 +17,14 @@ const ResultPage = () => {
       <Container>
         <div className="flex flex-col justify-center h-full">
           <div className="text-center">
-            <p className="text-2xl font-400 pb-[20px]">
+            <p className="text-lg sm:text-2xl font-400 pb-[20px]">
               카페에서 음료와 음식 주문하기
             </p>
-            <h1 className="text-6xl font-bold mb-[50px] leading-normal">
+            <h1 className="text-3xl sm:text-6xl font-bold mb-[50px] leading-normal">
               앗, 다시 말해볼까요?
             </h1>
           </div>
-          <div className="flex justify-center gap-[20px]">
+          <div className="flex flex-col items-center sm:flex-row justify-center gap-[20px]">
             {TAGS.map((tag, index) => (
               <div
                 key={index}
