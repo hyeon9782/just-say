@@ -26,7 +26,7 @@ const ReadyPage = () => {
   return (
     <Container>
       <div
-        className="h-full box-border flex flex-col justify-center min-h-[800px] px-[10px]"
+        className="h-full box-border flex flex-col justify-center  sm:min-h-[800px] px-[10px]"
         style={{
           backgroundImage: `url('${situation?.img}')`,
           backgroundSize: "cover",
@@ -34,20 +34,20 @@ const ReadyPage = () => {
         }}
       >
         <div className="text-center">
-          <h1 className="text-4xl font-bold mb-[50px] leading-normal">
+          <h1 className="text-2xl sm:text-4xl font-bold mb-[20px] sm:mb-[50px] leading-normal">
             {city?.ko} {situation?.ko}에 도착했습니다. <br />
             메뉴를 보고, <br /> 내가 먹고 싶은 것을 주문해 볼까요?
           </h1>
-          <p className="text-xl font-400 pb-[60px]">
+          <p className="text-md sm:text-xl font-400 pb-[30px] sm:pb-[60px]">
             내 스피커와 마이크가 잘 동작하는지 확인해 주세요.
           </p>
         </div>
-        <div className="flex justify-center pb-[30px]">
-          <div className="h-[300px] w-[70%] bg-white overflow-auto rounded-2xl opacity-70 py-[10px] px-[15px]">
+        <div className="flex justify-center pb-[20px] sm:pb-[30px]">
+          <div className="h-[200px] sm:h-[300px] w-[70%] bg-white overflow-auto rounded-2xl opacity-70 py-[10px] px-[15px]">
             {text}
           </div>
         </div>
-        <div className="flex gap-[50px]">
+        <div className="flex flex-col w-[70%] m-auto my-0 sm:w-full sm:flex-row gap-[10px] sm:gap-[50px]">
           <Button type="fill" size="lg" onClick={handleMikeTest}>
             {isRecording ? "마이크 테스트 종료" : "마이크 테스트 시작"}
           </Button>
