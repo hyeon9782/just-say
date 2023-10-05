@@ -10,3 +10,5 @@ export const TAXI_DRIVER =
   "You are the taxi driver and I am the passenger in your taxi.";
 
 export const PERSONALITY = [];
+
+export const GPT_3_5_TURBO_0613 = "gpt-3.5-turbo-0613";

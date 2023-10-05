@@ -17,7 +17,7 @@ const SituationArea = ({ onSelect, selectedData }: Props) => {
           선택한 상황이 대화할 상대방에게 반영됩니다.
         </p>
       </div>
-      <div className="flex flex-col sm:flex-row gap-[20px] sm:gap-[50px]">
+      <div className="flex flex-col w-[300px] mx-auto sm:w-full sm:flex-row gap-[20px] sm:gap-[50px]">
         {SELECT_DATA.SITUATIONS.map((situation) => (
           <Button
             key={situation.en}

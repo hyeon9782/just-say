@@ -10,7 +10,7 @@ const LanguageArea = ({ onSelect }: Props) => {
         이제부터 여행을 떠나봅시다! <br />
         내가 말할 언어를 골라주세요.
       </p>
-      <div className="flex flex-col sm:flex-row gap-[20px] sm:gap-[50px]">
+      <div className="flex flex-col w-[300px] mx-auto sm:w-full sm:flex-row gap-[20px] sm:gap-[50px]">
         {SELECT_DATA.LANGUAGES.map((language) => (
           <Button
             key={language.en}

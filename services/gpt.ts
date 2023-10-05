@@ -1,4 +1,4 @@
-import { Message } from "@/stores/useMessageStore";
+import { Message } from "@/types";
 
 export const gptAPI = async (messages: Message[]) => {
   return fetch("/api/gpt", {

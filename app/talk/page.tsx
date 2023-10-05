@@ -68,7 +68,7 @@ const TalkPage = () => {
       {menuModal && <MenuModal onClose={() => setMenuModal(false)} />}
       {confirmModal && (
         <ConfirmModal
-          onSubmit={() => router.push("/result")}
+          onSubmit={() => router.push("/result?result=fail")}
           onClose={() => setConfirmModal(false)}
           content="대화는 실패로 처리됩니다."
           title="대화를 정말 끝내시겠어요?"

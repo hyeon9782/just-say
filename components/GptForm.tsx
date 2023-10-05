@@ -2,6 +2,7 @@
 import { CAFE_STAFF, TAXI_DRIVER } from "@/constants/role";
 import { gptAPI } from "@/services/gpt";
 import useMessageStore from "@/stores/useMessageStore";
+
 import { FormEvent, useState } from "react";
 
 const GptForm = () => {

@@ -3,6 +3,7 @@ import ReplayModal from "@/components/modals/ReplayModal";
 import FullViewButton from "@/components/result/FullViewButton";
 import LikeBox from "@/components/result/LikeBox";
 import Container from "@/composables/Container";
+import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 const TAGS = [
   "언어 바꾸기",
@@ -12,6 +13,8 @@ const TAGS = [
 ];
 const ResultPage = () => {
   const [replayModal, setReplayModal] = useState(false);
+  const params = useSearchParams();
+  const resultParam = params.get("result");
   return (
     <>
       <Container>
@@ -21,7 +24,9 @@ const ResultPage = () => {
               카페에서 음료와 음식 주문하기
             </p>
             <h1 className="text-3xl sm:text-6xl font-bold mb-[50px] leading-normal">
-              앗, 다시 말해볼까요?
+              {resultParam === "success"
+                ? "축하합니다! 🎉"
+                : "앗, 다시 말해볼까요?"}
             </h1>
           </div>
           <div className="flex flex-col items-center sm:flex-row justify-center gap-[20px]">

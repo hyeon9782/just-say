@@ -3,12 +3,13 @@
 import { VoiceIcon } from "@/composables/icons";
 import useSpeechToText from "@/hooks/useSpeechToText";
 import { gptAPI } from "@/services/gpt";
-import { initGPT, textToSpeech } from "@/services/talk";
+import { checkEnd, initGPT, textToSpeech } from "@/services/talk";
 import useMessageStore from "@/stores/useMessageStore";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const TalkButton = () => {
+  const router = useRouter();
   const [isRecording, setIsRecording] = useState(false);
   const { messages, setMessages } = useMessageStore();
   const params = useSearchParams();
@@ -64,6 +65,9 @@ const TalkButton = () => {
         role: "assistant",
         content: data.result,
       });
+      if (checkEnd(data.result)) {
+        router.push("/result?result=success");
+      }
     } catch (error: any) {
       console.error(error);
       alert(error.message);
