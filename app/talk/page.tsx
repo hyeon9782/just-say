@@ -2,6 +2,7 @@
 
 import ConfirmModal from "@/components/modals/ConfirmModal";
 import MenuModal from "@/components/modals/MenuModal";
+import Suggestion from "@/components/talk/Suggestion";
 import TalkButton from "@/components/talk/TalkButton";
 import Container from "@/composables/Container";
 import { CloseIcon } from "@/composables/icons";
@@ -38,7 +39,9 @@ const TalkPage = () => {
                 onClick={() => setConfirmModal(true)}
               />
             </div>
-            <div className="h-[70%]">추천 답변 공간</div>
+            <div className="h-[70%] text-center">
+              <Suggestion />
+            </div>
             <div className="flex w-full justify-around h-[20%]">
               <h1 className="text-4xl font-bold mb-[30px]">
                 메뉴를 보고, 카페에서 내가 먹고 싶은 것을 주문해 보세요.
@@ -62,7 +65,6 @@ const TalkPage = () => {
           </div>
         </div>
       </Container>
-      {/* <Modal /> */}
       {menuModal && <MenuModal onClose={() => setMenuModal(false)} />}
       {confirmModal && (
         <ConfirmModal
