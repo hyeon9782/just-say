@@ -52,7 +52,7 @@ const checkEnd = (answer: string) => {
   return answer.includes("@@");
 };
 
-const summarizePrompt = async (messages: Message[]) => {
+const summarizePrompt = (messages: Message[]) => {
   const messagesStr = messages.map((message) => {
     if (message.role === "user") {
       return "User: " + message.content + ". ";
@@ -63,13 +63,7 @@ const summarizePrompt = async (messages: Message[]) => {
 
   console.log(messagesStr);
 
-  const res = await fetch("/api/gpt", {
-    method: "POST",
-    body: JSON.stringify(messages),
-  }).then((res) => res.json());
-  console.log(res);
-
-  return res;
+  return messagesStr;
 };
 
 export { textToSpeech, initGPT, checkEnd, summarizePrompt };

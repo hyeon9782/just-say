@@ -2,7 +2,7 @@
 
 import { VoiceIcon } from "@/composables/icons";
 import useSpeechToText from "@/hooks/useSpeechToText";
-import { gptAPI } from "@/services/gpt";
+import { rolePlaying } from "@/services/gpt";
 import { checkEnd, initGPT, textToSpeech } from "@/services/talk";
 import useMessageStore from "@/stores/useMessageStore";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -43,7 +43,7 @@ const TalkButton = () => {
         });
       }
 
-      const response = await gptAPI(msgList);
+      const response = await rolePlaying(msgList);
 
       const data = await response.json();
       if (response.status !== 200) {
