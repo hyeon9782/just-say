@@ -1,6 +1,6 @@
 import { DEFAULT, TALK_END } from "@/constants/prompt";
 import { CAFE_STAFF, TAXI_DRIVER } from "@/constants/prompt";
-import { InitGPT, TextToSpeech } from "@/types";
+import { InitGPT, Message, TextToSpeech } from "@/types";
 
 const textToSpeech = ({
   rate = 3,
@@ -52,4 +52,24 @@ const checkEnd = (answer: string) => {
   return answer.includes("@@");
 };
 
-export { textToSpeech, initGPT, checkEnd };
+const summarizePrompt = async (messages: Message[]) => {
+  const messagesStr = messages.map((message) => {
+    if (message.role === "user") {
+      return "User: " + message.content + ". ";
+    } else if (message.role === "user") {
+      return "GPT: " + message.content + ". ";
+    }
+  });
+
+  console.log(messagesStr);
+
+  const res = await fetch("/api/gpt", {
+    method: "POST",
+    body: JSON.stringify(messages),
+  }).then((res) => res.json());
+  console.log(res);
+
+  return res;
+};
+
+export { textToSpeech, initGPT, checkEnd, summarizePrompt };
