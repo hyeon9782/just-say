@@ -19,6 +19,10 @@ export const CAFE_STAFF =
 export const TAXI_DRIVER =
   "You are the taxi driver and I am the passenger in your taxi.";
 
+export const EVALUATE = [
+  "If you look at the conversation so far and think that the other person is a student learning a foreign language, please let me know what needs to be improved.",
+];
+
 export const PERSONALITY = [];
 
 export const GPT_3_5_TURBO_0613 = "gpt-3.5-turbo-0613";
