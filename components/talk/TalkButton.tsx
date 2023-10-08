@@ -7,6 +7,7 @@ import { checkEnd, initGPT, textToSpeech } from "@/services/talk";
 import useMessageStore from "@/stores/useMessageStore";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { debounce } from "@/utils/debounce";
 
 const TalkButton = () => {
   const router = useRouter();
@@ -75,8 +76,9 @@ const TalkButton = () => {
   };
 
   useEffect(() => {
+    const debouncedHandleResult = debounce(handleResult, 500);
     if (text && !isRecording) {
-      handleResult();
+      debouncedHandleResult();
     }
   }, [text, isRecording]);
 

@@ -1,4 +1,4 @@
-import { DEFAULT, TALK_END } from "@/constants/prompt";
+import { DEFAULT, PREREQUISITE, TALK_END } from "@/constants/prompt";
 import { CAFE_STAFF, TAXI_DRIVER } from "@/constants/prompt";
 import { InitGPT, Message, TextToSpeech } from "@/types";
 
@@ -28,6 +28,7 @@ const initGPT = ({ type, lang }: InitGPT) => {
   switch (type) {
     case "cafe":
       content += CAFE_STAFF;
+      content += PREREQUISITE.CAFE.join(" ");
       break;
     case "taxi":
       content += TAXI_DRIVER;
@@ -36,6 +37,9 @@ const initGPT = ({ type, lang }: InitGPT) => {
 
   // 반드시 지정된 언어로만 답변합니다.
   content += `always say in ${lang}`;
+
+  // 한 번에 한 가지 질문 또는 답변만 가능
+  content += "You can only ask one question or answer at a time.";
 
   // 사용자가 지정된 언어가 아닌 말로 답변하는 경우 모르겠다고 답변합니다.
   content += `you do not understand if the customer does not speak in ${lang}`;
@@ -52,7 +56,7 @@ const checkEnd = (answer: string) => {
   return answer.includes("@@");
 };
 
-const summarizePrompt = (messages: Message[]) => {
+const arrayToString = (messages: Message[]) => {
   const messagesStr = messages.map((message) => {
     if (message.role === "user") {
       return "User: " + message.content + ". ";
@@ -66,4 +70,4 @@ const summarizePrompt = (messages: Message[]) => {
   return messagesStr;
 };
 
-export { textToSpeech, initGPT, checkEnd, summarizePrompt };
+export { textToSpeech, initGPT, checkEnd, arrayToString };
