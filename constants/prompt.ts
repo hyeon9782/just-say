@@ -2,11 +2,11 @@ export const DEFAULT = "From now on, you and I will start a situational play.";
 
 export const PREREQUISITE = {
   CAFE: [
-    "You should ask your guests what menu they would like to eat.",
-    "You should ask the customer if they want to take out or eat in.",
-    "You should ask the customer how to pay",
-    "You should ask your guests if they have points or discount coupons.",
-    "You should ask the customer if he or she has any other requirements.",
+    "What menu item would the customer like?",
+    "Would the customer prefer to dine in or take out?",
+    "How will the customer be paying?",
+    "Does the customer have any points or discount coupons?",
+    "Does the customer have any other requests?",
   ],
 };
 
@@ -14,7 +14,7 @@ export const TALK_END =
   "If you think this situation has ended successfully and the conversation is over, please reply @@";
 
 export const CAFE_STAFF =
-  "I am a customer at the cafe and you are a cafe employee. You must answer in Korean and your answer must be short, around 20 characters.";
+  "Let's engage in a role-play scenario where I am a customer at a cafe and you are an employee.";
 
 export const TAXI_DRIVER =
   "You are the taxi driver and I am the passenger in your taxi.";
