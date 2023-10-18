@@ -22,6 +22,26 @@ const TalkButton = () => {
     setIsRecording(!isRecording);
   };
 
+  const callTTS = async (initData: any) => {
+    const response = await rolePlaying(initData);
+    const data = await response.json();
+    if (response.status !== 200) {
+      throw (
+        data.error || new Error(`request failed with status ${response.status}`)
+      );
+    }
+
+    console.log(data);
+
+    textToSpeech({ text: data.result });
+  };
+
+  useEffect(() => {
+    const initData = initGPT({ type: situationParam, lang: "Korean" });
+    setMessages(initData);
+    callTTS(initData);
+  }, [situationParam, setMessages]);
+
   const handleResult = async () => {
     try {
       const msgList = [
@@ -32,17 +52,17 @@ const TalkButton = () => {
         },
       ];
 
-      if (messages.length === 0) {
-        const initData = initGPT({ type: situationParam, lang: "Korean" });
-        msgList.push({
-          role: "system",
-          content: initData,
-        });
-        setMessages({
-          role: "system",
-          content: initData,
-        });
-      }
+      // if (messages.length === 0) {
+      //   const initData = initGPT({ type: situationParam, lang: "Korean" });
+      //   msgList.push({
+      //     role: "system",
+      //     content: initData,
+      //   });
+      //   setMessages({
+      //     role: "system",
+      //     content: initData,
+      //   });
+      // }
 
       const response = await rolePlaying(msgList);
 
@@ -57,15 +77,20 @@ const TalkButton = () => {
       console.log(data);
 
       textToSpeech({ text: data.result });
-      setMessages({
-        role: "user",
-        content: text,
-      });
+      setMessages([
+        {
+          role: "user",
+          content: text,
+        },
+      ]);
 
-      setMessages({
-        role: "assistant",
-        content: data.result,
-      });
+      setMessages([
+        {
+          role: "assistant",
+          content: data.result,
+        },
+      ]);
+
       if (checkEnd(data.result)) {
         router.push("/result?result=success");
       }
