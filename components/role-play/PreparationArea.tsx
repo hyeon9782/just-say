@@ -1,28 +1,26 @@
-"use client";
 import Button from "@/composables/Button";
 import Container from "@/composables/Container";
 import { SELECT_DATA } from "@/constants/select-data";
 import useSpeechToText from "@/hooks/useSpeechToText";
-
-import { useRouter, useSearchParams } from "next/navigation";
+import { SelectedData } from "@/types";
 import { useState } from "react";
 
-const ReadyPage = () => {
-  const params = useSearchParams();
-  const router = useRouter();
-  const situationParam = params.get("situation");
-  const cityParam = params.get("city");
+type Props = {
+  selectedData: SelectedData;
+  onNext: () => void;
+};
+
+const PreparationArea = ({ selectedData, onNext }: Props) => {
   const [isRecording, setIsRecording] = useState(false);
   let text = useSpeechToText({ isRecording, lang: "en-US" });
   const situation = SELECT_DATA.SITUATIONS.find(
-    (situation) => situation.en === situationParam
+    (situation) => situation.en === selectedData.situation
   );
-  const city = SELECT_DATA.CITIES.find((city) => city.en === cityParam);
+  const city = SELECT_DATA.CITIES.find((city) => city.en === selectedData.city);
 
   const handleMikeTest = () => {
     setIsRecording(!isRecording);
   };
-
   return (
     <Container>
       <div
@@ -51,11 +49,7 @@ const ReadyPage = () => {
           <Button type="fill" size="lg" onClick={handleMikeTest}>
             {isRecording ? "마이크 테스트 종료" : "마이크 테스트 시작"}
           </Button>
-          <Button
-            type="fill"
-            size="lg"
-            onClick={() => router.push(`/talk?situation=${situation?.en}`)}
-          >
+          <Button type="fill" size="lg" onClick={onNext}>
             대화 시작
           </Button>
         </div>
@@ -64,4 +58,4 @@ const ReadyPage = () => {
   );
 };
 
-export default ReadyPage;
+export default PreparationArea;

@@ -10,7 +10,7 @@ type Props = {
 const StartButton = ({ children }: Props) => {
   const router = useRouter();
   return (
-    <Button type="fill" size="lg" onClick={() => router.push("/select")}>
+    <Button type="fill" size="lg" onClick={() => router.push("/role-play")}>
       {children}
     </Button>
   );

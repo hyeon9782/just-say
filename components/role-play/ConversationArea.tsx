@@ -1,26 +1,26 @@
-"use client";
-
-import ConfirmModal from "@/components/modals/ConfirmModal";
-import MenuModal from "@/components/modals/MenuModal";
-import Suggestion from "@/components/talk/Suggestion";
-import TalkButton from "@/components/talk/TalkButton";
 import Container from "@/composables/Container";
-import { CloseIcon } from "@/composables/icons";
-import { SELECT_DATA } from "@/constants/select-data";
-import Image from "next/image";
-import { useRouter, useSearchParams } from "next/navigation";
+import TalkButtonTest from "../talk/TalkButtonTest";
+import MenuModal from "../modals/MenuModal";
+import ConfirmModal from "../modals/ConfirmModal";
 import { useState } from "react";
+import { SELECT_DATA } from "@/constants/select-data";
+import { CloseIcon } from "@/composables/icons";
+import Suggestion from "../talk/Suggestion";
+import Image from "next/image";
+import { SelectedData } from "@/types";
 
-const TalkPage = () => {
-  const router = useRouter();
-  const params = useSearchParams();
-  const situationParam = params.get("situation");
+type Props = {
+  selectedData: SelectedData;
+  fail: () => void;
+  success: () => void;
+};
+
+const ConversationArea = ({ selectedData, fail, success }: Props) => {
   const [menuModal, setMenuModal] = useState(false);
   const [confirmModal, setConfirmModal] = useState(false);
   const situation = SELECT_DATA.SITUATIONS.find(
-    (situation) => situation.en === situationParam
+    (situation) => situation.en === selectedData.situation
   );
-
   return (
     <>
       <Container>
@@ -61,14 +61,15 @@ const TalkPage = () => {
             </div>
           </div>
           <div className="h-[30%] box-border flex flex-col justify-center items-center bg-gray-100">
-            <TalkButton />
+            {/* <TalkButton /> */}
+            <TalkButtonTest />
           </div>
         </div>
       </Container>
       {menuModal && <MenuModal onClose={() => setMenuModal(false)} />}
       {confirmModal && (
         <ConfirmModal
-          onSubmit={() => router.push("/result?result=fail")}
+          onSubmit={fail}
           onClose={() => setConfirmModal(false)}
           content="대화는 실패로 처리됩니다."
           title="대화를 정말 끝내시겠어요?"
@@ -78,4 +79,4 @@ const TalkPage = () => {
   );
 };
 
-export default TalkPage;
+export default ConversationArea;

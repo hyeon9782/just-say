@@ -22,7 +22,7 @@ const textToSpeech = ({
   speechSynthesis.speak(utterance);
 };
 
-const initGPT = ({ type, lang }: InitGPT) => {
+const initGPT = ({ type, lang }: InitGPT): Message[] => {
   let menu_num = CAFE.menu_list.length;
   const menus = CAFE.menu_list.map((item) => item.menu);
   const prices = CAFE.menu_list.map((item) => item.price);
