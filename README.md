@@ -62,17 +62,17 @@ Styled Components -> TailwindCSS
 
 ## 추가 구현
 
-- [] GPT Function calling 기능으로 정형화된 반환값 받기기
+- [ ] GPT Function calling 기능으로 정형화된 반환값 받기기
 - [x] AI와 나눴던 대화를 다시 듣는 기능 (대화 다시보기 기능을 수정 후 대화 페이지에서 사용?)
-- [] 사용자가 AI와 나눈 대화를 기준으로 피드백 기능
-- [] API Token 관리를 위한 나눈 대화 요약 기능
-- [] STT 기능 Web Speech API => Google Speech To Text API로 전환
-- [] TTS 기능 Web Speech API => Google Text To Speech API로 전환
-- [] 영어 외의 다양한 언어 지원 (일본어, 한국어)
-- [] 국제화 적용
-- [] SEO
-- [] 다크 모드 적용
-- [] 카페 외의 다른 다양한 상황 지원 (공항, 택시)
-- [] 대화를 진행 중에 랜덤으로 이벤트 발생 (카드 한도 초과 등..)
-- [] Social Login 기능 (Kakao | Naver | Google)
-- [] Database 연동 (MongoDB)
+- [ ] 사용자가 AI와 나눈 대화를 기준으로 피드백 기능
+- [ ] API Token 관리를 위한 나눈 대화 요약 기능
+- [ ] STT 기능 Web Speech API => Google Speech To Text API로 전환
+- [ ] TTS 기능 Web Speech API => Google Text To Speech API로 전환
+- [ ] 영어 외의 다양한 언어 지원 (일본어, 한국어)
+- [ ] 국제화 적용
+- [ ] SEO
+- [ ] 다크 모드 적용
+- [ ] 카페 외의 다른 다양한 상황 지원 (공항, 택시)
+- [ ] 대화를 진행 중에 랜덤으로 이벤트 발생 (카드 한도 초과 등..)
+- [ ] Social Login 기능 (Kakao | Naver | Google)
+- [ ] Database 연동 (MongoDB)
