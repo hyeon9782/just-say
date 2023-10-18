@@ -32,7 +32,7 @@ const PreparationArea = ({ selectedData, onNext }: Props) => {
         </p>
       </div>
       <div className="flex justify-center pb-[20px] sm:pb-[30px]">
-        <div className="h-[200px] sm:h-[300px] w-[70%] bg-blue-300 overflow-auto rounded-2xl bg-opacity-10 py-[10px] px-[15px]">
+        <div className="h-[200px] sm:h-[300px] w-[70%] bg-blue-300 overflow-auto rounded-2xl bg-opacity-30 py-[10px] px-[15px]">
           {text}
         </div>
       </div>

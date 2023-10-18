@@ -3,15 +3,19 @@ import { VoiceIcon } from "@/composables/icons";
 import useSpeechToText from "@/hooks/useSpeechToText";
 import { rolePlaying } from "@/services/gpt";
 import { initGPT, textToSpeech } from "@/services/talk";
-import { Message } from "@/types";
+import useMessageStore from "@/stores/useMessageStore";
+import { Message, MessagesAction } from "@/types";
 import { useEffect, useState } from "react";
 type Props = {
   messages: Message[];
   success: () => void;
   addMessages: (newMessages: Message[]) => void;
 };
-const TalkButtonTest = ({ messages, success, addMessages }: Props) => {
+const TalkButtonTest = ({ success, addMessages }: Props) => {
+  console.log("TalkButtonTest rendered");
   const [isRecording, setIsRecording] = useState(false);
+
+  const { messages, setMessages } = useMessageStore() as MessagesAction;
 
   let text = useSpeechToText({ isRecording, lang: "ko-KR" });
 
@@ -19,25 +23,39 @@ const TalkButtonTest = ({ messages, success, addMessages }: Props) => {
     setIsRecording(!isRecording);
   };
 
-  const callTTS = async (initData: any) => {
-    const response = await rolePlaying(initData);
-    const data = await response.json();
-    if (response.status !== 200) {
-      throw (
-        data.error || new Error(`request failed with status ${response.status}`)
-      );
+  const callGPT = async (initData: any) => {
+    try {
+      const response = await rolePlaying(initData);
+
+      // 추가: 요청이 취소되지 않았을 때만 결과 처리
+      const data = await response.json();
+      if (response.status !== 200) {
+        throw (
+          data.error ||
+          new Error(`request failed with status ${response.status}`)
+        );
+      }
+
+      console.log(data);
+
+      textToSpeech({ text: data.result });
+    } catch (error) {
+      console.error(error);
     }
-
-    console.log(data);
-
-    textToSpeech({ text: data.result });
   };
 
+  // 첫번째 useEffect: 초기 메시지 설정
   useEffect(() => {
     const initData = initGPT({ lang: "Korean", type: "cafe" });
-    addMessages(initData);
-    callTTS(initData);
-  }, [addMessages]);
+    setMessages(initData);
+  }, []);
+
+  // 두번째 useEffect: API 호출
+  useEffect(() => {
+    if (messages.length !== 0) {
+      callGPT(messages); // messages는 useMessageStore에서 가져온 상태
+    }
+  }, [messages]); // messages 변화 시에만 API 요청 실행
 
   return (
     <div className="flex flex-col items-center ">

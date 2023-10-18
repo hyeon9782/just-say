@@ -41,7 +41,7 @@ export type Message = {
 };
 
 export type MessagesAction = {
-  setMessages: (newMessage: Message) => void;
+  setMessages: (newMessages: Message[]) => void;
 };
 
 export type Messages = {

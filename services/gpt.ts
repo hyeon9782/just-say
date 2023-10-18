@@ -2,6 +2,8 @@ import { Message } from "@/types";
 
 const rolePlaying = async (messages: Message[]) => {
   try {
+    console.log("rolePlaying");
+
     const response = await fetch("/api/gpt", {
       method: "POST",
       headers: {

@@ -3,7 +3,6 @@ import TalkButtonTest from "../talk/TalkButtonTest";
 import MenuModal from "../modals/MenuModal";
 import ConfirmModal from "../modals/ConfirmModal";
 import { useState } from "react";
-import { SELECT_DATA } from "@/constants/select-data";
 import { CloseIcon } from "@/composables/icons";
 import Suggestion from "../talk/Suggestion";
 import Image from "next/image";
@@ -22,22 +21,13 @@ const ConversationArea = ({
   result,
   addMessages,
 }: Props) => {
+  console.log("ConversationArea rendered");
   const [menuModal, setMenuModal] = useState(false);
   const [confirmModal, setConfirmModal] = useState(false);
-  const situation = SELECT_DATA.SITUATIONS.find(
-    (situation) => situation.en === selectedData.situation
-  );
   return (
     <>
       <div className="select-container">
-        <div
-          className="h-[70%] flex flex-col"
-          style={{
-            backgroundImage: `url('${situation?.img}')`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-          }}
-        >
+        <div className="h-[70%] flex flex-col">
           <div className="flex justify-end h-[10%]">
             <CloseIcon
               className="p-[10px] text-black text-6xl"

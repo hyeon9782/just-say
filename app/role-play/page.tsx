@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 
 const RolePlayPage = () => {
+  console.log("RolePlayPage rendered");
+
   const router = useRouter();
   const [step, setStep] = useState<
     "언어" | "도시" | "상황" | "준비" | "대화" | "결과"
