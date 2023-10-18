@@ -3,13 +3,16 @@ import { VoiceIcon } from "@/composables/icons";
 import useSpeechToText from "@/hooks/useSpeechToText";
 import { rolePlaying } from "@/services/gpt";
 import { initGPT, textToSpeech } from "@/services/talk";
-import useMessageStore from "@/stores/useMessageStore";
-import { Message } from "postcss";
+import { Message } from "@/types";
 import { useEffect, useState } from "react";
-
-const TalkButtonTest = () => {
+type Props = {
+  messages: Message[];
+  success: () => void;
+  addMessages: (newMessages: Message[]) => void;
+};
+const TalkButtonTest = ({ messages, success, addMessages }: Props) => {
   const [isRecording, setIsRecording] = useState(false);
-  const [messages, setMessages] = useState<Message[]>([]);
+
   let text = useSpeechToText({ isRecording, lang: "ko-KR" });
 
   const handleClick = () => {
@@ -32,9 +35,9 @@ const TalkButtonTest = () => {
 
   useEffect(() => {
     const initData = initGPT({ lang: "Korean", type: "cafe" });
-    setMessages(initData);
+    addMessages(initData);
     callTTS(initData);
-  }, []);
+  }, [addMessages]);
 
   return (
     <div className="flex flex-col items-center ">

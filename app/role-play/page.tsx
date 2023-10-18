@@ -10,7 +10,7 @@ import Container from "@/composables/Container";
 import useCustomBack from "@/hooks/useCustomBack";
 import { Message, SelectedData } from "@/types";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const RolePlayPage = () => {
   const router = useRouter();
@@ -78,16 +78,16 @@ const RolePlayPage = () => {
     nextStep();
   };
 
-  const fail = () => {
-    setIsSuccess(false);
-    nextStep();
-  };
-  const success = () => {
-    setIsSuccess(true);
+  const result = (result: boolean) => {
+    setIsSuccess(result);
     nextStep();
   };
 
-  useCustomBack({ customBack: prevStep });
+  const addMessages = useCallback((newMessages: Message[]) => {
+    setMessages((prev) => [...prev, ...newMessages]);
+  }, []);
+
+  // useCustomBack({ customBack: prevStep });
 
   return (
     <Container>
@@ -104,9 +104,10 @@ const RolePlayPage = () => {
       )}
       {step === "대화" && (
         <ConversationArea
+          messages={messages}
           selectedData={selectedData}
-          fail={fail}
-          success={success}
+          addMessages={addMessages}
+          result={result}
         />
       )}
       {step === "결과" && (

@@ -3,15 +3,13 @@ import Button from "@/composables/Button";
 import Modal from "@/composables/Modal";
 import { SpeakerIcon } from "@/composables/icons";
 import { textToSpeech } from "@/services/talk";
-import useMessageStore from "@/stores/useMessageStore";
-import { Message } from "postcss";
+import { Message } from "@/types";
+
 type Props = {
   onClose: () => void;
   messages: Message[];
 };
 const ReplayModal = ({ onClose, messages }: Props) => {
-  // const { messages } = useMessageStore();
-
   const handleReplay = (content: string) => {
     textToSpeech({ text: content });
   };
