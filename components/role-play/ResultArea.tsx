@@ -12,11 +12,10 @@ const TAGS = [
 ];
 type Props = {
   selectedData: SelectedData;
-  messages: Message[];
   isSuccess: boolean;
 };
 
-const ResultArea = ({ selectedData, messages, isSuccess }: Props) => {
+const ResultArea = ({ selectedData, isSuccess }: Props) => {
   const [replayModal, setReplayModal] = useState(false);
   return (
     <>
@@ -43,12 +42,7 @@ const ResultArea = ({ selectedData, messages, isSuccess }: Props) => {
         </div>
       </div>
 
-      {replayModal && (
-        <ReplayModal
-          onClose={() => setReplayModal(false)}
-          messages={messages}
-        />
-      )}
+      {replayModal && <ReplayModal onClose={() => setReplayModal(false)} />}
     </>
   );
 };

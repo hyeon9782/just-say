@@ -8,9 +8,9 @@ import ResultArea from "@/components/role-play/ResultArea";
 import SituationArea from "@/components/role-play/SituationArea";
 import Container from "@/composables/Container";
 import useCustomBack from "@/hooks/useCustomBack";
-import { Message, SelectedData } from "@/types";
+import { SelectedData } from "@/types";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 const RolePlayPage = () => {
   console.log("RolePlayPage rendered");
@@ -25,8 +25,6 @@ const RolePlayPage = () => {
     situation: "",
   });
   const [isSuccess, setIsSuccess] = useState(false);
-
-  const [messages, setMessages] = useState<Message[]>([]);
 
   const nextStep = () => {
     switch (step) {
@@ -85,13 +83,7 @@ const RolePlayPage = () => {
     nextStep();
   };
 
-  const addMessage = useCallback((newMessage: Message) => {
-    console.log(newMessage);
-
-    setMessages((prev) => [...prev, newMessage]);
-  }, []);
-
-  // useCustomBack({ customBack: prevStep });
+  useCustomBack({ customBack: prevStep });
 
   return (
     <Container>
@@ -107,19 +99,10 @@ const RolePlayPage = () => {
         <PreparationArea selectedData={selectedData} onNext={nextStep} />
       )}
       {step === "대화" && (
-        <ConversationArea
-          messages={messages}
-          selectedData={selectedData}
-          addMessage={addMessage}
-          result={result}
-        />
+        <ConversationArea selectedData={selectedData} result={result} />
       )}
       {step === "결과" && (
-        <ResultArea
-          selectedData={selectedData}
-          messages={messages}
-          isSuccess={isSuccess}
-        />
+        <ResultArea selectedData={selectedData} isSuccess={isSuccess} />
       )}
     </Container>
   );

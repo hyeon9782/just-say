@@ -1,26 +1,19 @@
 "use client";
-import TalkButtonTest from "../talk/TalkButtonTest";
+import TalkButton from "../talk/TalkButton";
 import MenuModal from "../modals/MenuModal";
 import ConfirmModal from "../modals/ConfirmModal";
 import { useState } from "react";
 import { CloseIcon } from "@/composables/icons";
 import Suggestion from "../talk/Suggestion";
 import Image from "next/image";
-import { Message, SelectedData } from "@/types";
+import { SelectedData } from "@/types";
 
 type Props = {
   selectedData: SelectedData;
-  messages: Message[];
-  addMessage: (newMessage: Message) => void;
   result: (result: boolean) => void;
 };
 
-const ConversationArea = ({
-  selectedData,
-  messages,
-  result,
-  addMessage,
-}: Props) => {
+const ConversationArea = ({ selectedData, result }: Props) => {
   console.log("ConversationArea rendered");
   const [menuModal, setMenuModal] = useState(false);
   const [confirmModal, setConfirmModal] = useState(false);
@@ -56,11 +49,7 @@ const ConversationArea = ({
           </div>
         </div>
         <div className="h-[30%] box-border flex flex-col justify-center items-center bg-gray-100">
-          <TalkButtonTest
-            messages={messages}
-            success={() => result(true)}
-            addMessage={addMessage}
-          />
+          <TalkButton success={() => result(true)} />
         </div>
       </div>
       {menuModal && <MenuModal onClose={() => setMenuModal(false)} />}
