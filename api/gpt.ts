@@ -1,6 +1,6 @@
 import { Message } from "@/types";
 
-const rolePlaying = async (messages: Message[]) => {
+export const callGPTAPI = async (messages: Message[]) => {
   try {
     console.log("rolePlaying");
 
@@ -19,5 +19,3 @@ const rolePlaying = async (messages: Message[]) => {
     throw error;
   }
 };
-
-export { rolePlaying };

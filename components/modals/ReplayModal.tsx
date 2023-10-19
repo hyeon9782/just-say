@@ -26,10 +26,12 @@ const ReplayModal = ({ onClose }: Props) => {
                   className="rounded-md px-[10px] py-[5px] bg-yellow-300 max-w-[300px] self-start break-words flex gap-[10px]"
                 >
                   <span>{message.content}</span>
-                  <SpeakerIcon
-                    className="text-xl"
-                    onClick={() => handleReplay(message.content)}
-                  />
+                  <div>
+                    <SpeakerIcon
+                      className="text-xl"
+                      onClick={() => handleReplay(message.content)}
+                    />
+                  </div>
                 </div>
               );
             } else if (message.role === "assistant") {
@@ -39,11 +41,12 @@ const ReplayModal = ({ onClose }: Props) => {
                   className="bg-white rounded-md px-[10px] py-[5px] max-w-[300px] self-end break-words flex gap-[10px]"
                 >
                   <span>{message.content}</span>
-
-                  <SpeakerIcon
-                    className="text-xl"
-                    onClick={() => handleReplay(message.content)}
-                  />
+                  <div>
+                    <SpeakerIcon
+                      className="text-xl"
+                      onClick={() => handleReplay(message.content)}
+                    />
+                  </div>
                 </div>
               );
             } else {

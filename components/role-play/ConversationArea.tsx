@@ -20,7 +20,7 @@ const ConversationArea = ({ selectedData, result }: Props) => {
   return (
     <>
       <div className="select-container">
-        <div className="h-[70%] flex flex-col">
+        <div className="h-[70%] flex flex-col bg-gray-100">
           <div className="flex justify-end h-[10%]">
             <CloseIcon
               className="p-[10px] text-black text-6xl"
@@ -48,7 +48,7 @@ const ConversationArea = ({ selectedData, result }: Props) => {
             </div>
           </div>
         </div>
-        <div className="h-[30%] box-border flex flex-col justify-center items-center bg-gray-100">
+        <div className="h-[30%] box-border flex flex-col justify-center items-center bg-gray-200">
           <TalkButton success={() => result(true)} />
         </div>
       </div>

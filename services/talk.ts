@@ -1,6 +1,4 @@
 import { CAFE } from "@/constants/cafe";
-import { DEFAULT, PREREQUISITE, TALK_END } from "@/constants/prompt";
-import { CAFE_STAFF, TAXI_DRIVER } from "@/constants/prompt";
 import { InitGPT, Message, TextToSpeech } from "@/types";
 
 const textToSpeech = ({
@@ -58,8 +56,6 @@ const initGPT = ({ type, lang }: InitGPT): Message => {
   // define_bot_role += "Ask one question at a time. "
   // define_bot_role += "do not include 'swipe machine provided' in the conversation."
 
-  //  초기 프롬프트 설정
-  let msgList = [];
   // 항상 상기시켜야 하는 내용들?
   // 이후 4096을 넘어갔을 때 다시 한번 상기시켜야 함.
   let notice_msg =
@@ -73,14 +69,8 @@ const initGPT = ({ type, lang }: InitGPT): Message => {
   define_bot_role += notice_msg;
 
   const system = { role: "system", content: define_bot_role };
-  // msgList.push({ role: "system", content: define_bot_role });
-  // msgList.push({ role: "user", content: "Hello!" });
 
   return system;
-};
-
-const checkEnd = (answer: string) => {
-  return answer.includes("@@");
 };
 
 const arrayToString = (messages: Message[]) => {
@@ -97,35 +87,4 @@ const arrayToString = (messages: Message[]) => {
   return messagesStr;
 };
 
-// const initGPT = ({ type, lang }: InitGPT) => {
-//   let content = DEFAULT;
-
-//   // 기본 역할을 지정해줍니다.
-//   switch (type) {
-//     case "cafe":
-//       content += CAFE_STAFF;
-//       content += PREREQUISITE.CAFE.join(" ");
-//       break;
-//     case "taxi":
-//       content += TAXI_DRIVER;
-//       break;
-//   }
-
-//   // 반드시 지정된 언어로만 답변합니다.
-//   content += `always say in ${lang}`;
-
-//   // 한 번에 한 가지 질문 또는 답변만 가능
-//   content += "You can only ask one question or answer at a time.";
-
-//   // 사용자가 지정된 언어가 아닌 말로 답변하는 경우 모르겠다고 답변합니다.
-//   content += `you do not understand if the customer does not speak in ${lang}`;
-
-//   // 대화가 끝났다고 판단하면 @@를 보냅니다.
-//   content += TALK_END;
-
-//   console.log(content);
-
-//   return content;
-// };
-
-export { textToSpeech, initGPT, checkEnd, arrayToString };
+export { textToSpeech, initGPT, arrayToString };
