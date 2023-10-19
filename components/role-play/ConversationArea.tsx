@@ -11,7 +11,7 @@ import { Message, SelectedData } from "@/types";
 type Props = {
   selectedData: SelectedData;
   messages: Message[];
-  addMessages: (newMessages: Message[]) => void;
+  addMessage: (newMessage: Message) => void;
   result: (result: boolean) => void;
 };
 
@@ -19,7 +19,7 @@ const ConversationArea = ({
   selectedData,
   messages,
   result,
-  addMessages,
+  addMessage,
 }: Props) => {
   console.log("ConversationArea rendered");
   const [menuModal, setMenuModal] = useState(false);
@@ -59,7 +59,7 @@ const ConversationArea = ({
           <TalkButtonTest
             messages={messages}
             success={() => result(true)}
-            addMessages={addMessages}
+            addMessage={addMessage}
           />
         </div>
       </div>

@@ -3,10 +3,13 @@ import { create } from "zustand";
 
 const useMessageStore = create<Messages | MessagesAction>((set) => ({
   messages: [],
-  setMessages: (newMessage: Message[]) =>
+  addMessage: (newMessage: Message[]) => {
+    console.log(newMessage);
+
     set((prev) => ({
-      messages: [...prev.messages, ...newMessage],
-    })),
+      messages: [...newMessage],
+    }));
+  },
 }));
 
 export default useMessageStore;

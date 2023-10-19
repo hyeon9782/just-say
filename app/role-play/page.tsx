@@ -85,8 +85,10 @@ const RolePlayPage = () => {
     nextStep();
   };
 
-  const addMessages = useCallback((newMessages: Message[]) => {
-    setMessages((prev) => [...prev, ...newMessages]);
+  const addMessage = useCallback((newMessage: Message) => {
+    console.log(newMessage);
+
+    setMessages((prev) => [...prev, newMessage]);
   }, []);
 
   // useCustomBack({ customBack: prevStep });
@@ -108,7 +110,7 @@ const RolePlayPage = () => {
         <ConversationArea
           messages={messages}
           selectedData={selectedData}
-          addMessages={addMessages}
+          addMessage={addMessage}
           result={result}
         />
       )}

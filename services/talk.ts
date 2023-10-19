@@ -22,7 +22,7 @@ const textToSpeech = ({
   speechSynthesis.speak(utterance);
 };
 
-const initGPT = ({ type, lang }: InitGPT): Message[] => {
+const initGPT = ({ type, lang }: InitGPT): Message => {
   let menu_num = CAFE.menu_list.length;
   const menus = CAFE.menu_list.map((item) => item.menu);
   const prices = CAFE.menu_list.map((item) => item.price);
@@ -70,10 +70,12 @@ const initGPT = ({ type, lang }: InitGPT): Message[] => {
   notice_msg +=
     "The following is the start of conversation with customer and start talking 'Welcome!' include another one sentence.";
   define_bot_role += notice_msg;
-  msgList.push({ role: "system", content: define_bot_role });
-  msgList.push({ role: "user", content: "Hello!" });
 
-  return msgList;
+  const system = { role: "system", content: define_bot_role };
+  // msgList.push({ role: "system", content: define_bot_role });
+  // msgList.push({ role: "user", content: "Hello!" });
+
+  return system;
 };
 
 const checkEnd = (answer: string) => {
