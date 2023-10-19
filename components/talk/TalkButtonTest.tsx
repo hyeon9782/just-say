@@ -2,9 +2,10 @@
 import { VoiceIcon } from "@/composables/icons";
 import useSpeechToText from "@/hooks/useSpeechToText";
 import { rolePlaying } from "@/services/gpt";
-import { initGPT, textToSpeech } from "@/services/talk";
+import { checkEnd, initGPT, textToSpeech } from "@/services/talk";
 import useMessageStore from "@/stores/useMessageStore";
 import { Message, MessagesAction } from "@/types";
+import { debounce } from "@/utils/debounce";
 import { useEffect, useState } from "react";
 type Props = {
   messages: Message[];
@@ -56,6 +57,71 @@ const TalkButtonTest = ({ success, addMessages }: Props) => {
       callGPT(messages); // messages는 useMessageStore에서 가져온 상태
     }
   }, [messages]); // messages 변화 시에만 API 요청 실행
+
+  const handleResult = async () => {
+    try {
+      const msgList = [
+        ...messages,
+        {
+          role: "user",
+          content: text,
+        },
+      ];
+
+      // if (messages.length === 0) {
+      //   const initData = initGPT({ type: situationParam, lang: "Korean" });
+      //   msgList.push({
+      //     role: "system",
+      //     content: initData,
+      //   });
+      //   setMessages({
+      //     role: "system",
+      //     content: initData,
+      //   });
+      // }
+
+      const response = await rolePlaying(msgList);
+
+      const data = await response.json();
+      if (response.status !== 200) {
+        throw (
+          data.error ||
+          new Error(`request failed with status ${response.status}`)
+        );
+      }
+
+      console.log(data);
+
+      textToSpeech({ text: data.result });
+      setMessages([
+        {
+          role: "user",
+          content: text,
+        },
+      ]);
+
+      setMessages([
+        {
+          role: "assistant",
+          content: data.result,
+        },
+      ]);
+
+      // if (checkEnd(data.result)) {
+      //   router.push("/result?result=success");
+      // }
+    } catch (error: any) {
+      console.error(error);
+      alert(error.message);
+    }
+  };
+
+  useEffect(() => {
+    const debouncedHandleResult = debounce(handleResult, 500);
+    if (text && !isRecording) {
+      debouncedHandleResult();
+    }
+  }, [text, isRecording]);
 
   return (
     <div className="flex flex-col items-center ">
