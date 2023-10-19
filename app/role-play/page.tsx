@@ -12,13 +12,13 @@ import { SelectedData } from "@/types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
+export type Step = "언어" | "도시" | "상황" | "준비" | "대화" | "결과";
+
 const RolePlayPage = () => {
   console.log("RolePlayPage rendered");
 
   const router = useRouter();
-  const [step, setStep] = useState<
-    "언어" | "도시" | "상황" | "준비" | "대화" | "결과"
-  >("언어");
+  const [step, setStep] = useState<Step>("언어");
   const [selectedData, setSelectedData] = useState<SelectedData>({
     language: "",
     city: "",
@@ -70,6 +70,10 @@ const RolePlayPage = () => {
     }
   };
 
+  const moveStep = (step: Step) => {
+    setStep(step);
+  };
+
   const selectData = (key: string, value: string) => {
     setSelectedData((prevData) => ({
       ...prevData,
@@ -102,7 +106,11 @@ const RolePlayPage = () => {
         <ConversationArea selectedData={selectedData} result={result} />
       )}
       {step === "결과" && (
-        <ResultArea selectedData={selectedData} isSuccess={isSuccess} />
+        <ResultArea
+          selectedData={selectedData}
+          isSuccess={isSuccess}
+          moveStep={moveStep}
+        />
       )}
     </Container>
   );
