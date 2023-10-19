@@ -18,6 +18,7 @@ const textToSpeech = ({
   utterance.lang = lang; // 언어
   utterance.text = text; // 내용
   utterance.volume = volume; // 음성의 크기 0.0 ~ 1.0
+  console.log(speechSynthesis.getVoices());
 
   speechSynthesis.speak(utterance);
 };
