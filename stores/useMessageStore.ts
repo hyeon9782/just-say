@@ -6,7 +6,7 @@ const useMessageStore = create<Messages | MessagesAction>((set) => ({
   addMessage: (newMessage: Message[]) => {
     console.log(newMessage);
 
-    set((prev) => ({
+    set(() => ({
       messages: [...newMessage],
     }));
   },

@@ -1,9 +1,11 @@
 "use client";
 import { VoiceIcon } from "@/composables/icons";
+import { SUGGESTION } from "@/constants/suggestion";
 import { SUMMARIZE } from "@/constants/summarize";
 import { rolePlaying } from "@/services/gpt";
 import { arrayToString, initGPT, textToSpeech } from "@/services/talk";
 import useMessageStore from "@/stores/useMessageStore";
+import useSuggestionStore from "@/stores/useSuggestionStore";
 import { Message, Messages, MessagesAction } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -14,6 +16,7 @@ const TalkButton = ({ success }: Props) => {
   console.log("TalkButtonTest rendered");
   const [isRecording, setIsRecording] = useState(false);
   const [loading, setLoading] = useState(false);
+  const { addSuggestion } = useSuggestionStore();
 
   const { messages, addMessage } = useMessageStore() as
     | MessagesAction
@@ -46,6 +49,30 @@ const TalkButton = ({ success }: Props) => {
     }
 
     setLoading(false);
+
+    // 추천 답변 기능이 켜져있다면 추천 답변 요청
+    if (true) {
+      const messagesStr = arrayToString(msgs);
+
+      const res = await fetch("/api/suggestion", {
+        method: "POST",
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "system",
+              content: SUGGESTION,
+            },
+            {
+              role: "user",
+              content: messagesStr,
+            },
+          ],
+        }),
+      }).then((res) => res.json());
+      console.log(res);
+      const answerList = res.result.split("/");
+      addSuggestion(answerList);
+    }
 
     // token이 특정 값 이상이면 내용을 요약하자
     if (data.token > 3500) {

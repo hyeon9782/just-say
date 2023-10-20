@@ -78,10 +78,8 @@ const arrayToString = (messages: Message[]) => {
     .map((message) => {
       if (message.role === "user") {
         return "User: " + message.content + ". ";
-      } else if (message.role === "user") {
+      } else if (message.role === "assistant") {
         return "GPT: " + message.content + ". ";
-      } else {
-        return `${message.content} `;
       }
     })
     .join(" ");
