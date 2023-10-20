@@ -36,21 +36,28 @@ Styled Components -> TailwindCSS
   - [x] 대화 페이지 마크업
   - [x] 결과 페이지 마크업
 
-- [ ] 기능 구현
+- [x] 기능 구현
 
   - [x] Web Speech API를 활용한 Speech to Text 기능
   - [x] OpenAI Chat Completions API를 활용한 대화 기능
   - [x] Web Speech API를 활용한 Text to Speech 기능
   - [x] AI와 나눴던 대화 다시보기 기능
-  - [ ] 초보자를 위한 답변 추천 기능
+  - [x] 초보자를 위한 답변 추천 기능
 
-- [ ] 공통 컴포넌트 구현
+- [x] 공통 컴포넌트 구현
 
   - [x] Button 컴포넌트
   - [x] Container 컴포넌트
-  - [ ] Title 컴포넌트
   - [x] Modal 컴포넌트
-  - [ ] Toast 컴포넌트
+
+- [ ] 리팩토링
+
+  - [ ] UI 로직과 비즈니스 로직 분리
+  - [ ] 전체적인 변수 명 및 함수명 수정
+  - [ ] fetch 함수 모듈화
+  - [ ] 사용하지 않는 코드 제거
+  - [ ] 공통된 함수 합치기
+  - [ ] 에러 핸들링 부분 리팩토링
 
 ## 주요 기능
 
@@ -59,13 +66,12 @@ Styled Components -> TailwindCSS
 - Web Speech API를 활용한 Text to Speech 기능
 - AI와 나눴던 대화 다시보기 기능
 - 초보자를 위한 답변 추천 기능
+- API Token 관리를 위한 나눈 대화 요약 기능
 
 ## 추가 구현
 
 - [ ] GPT Function calling 기능으로 정형화된 반환값 받기기
-- [x] AI와 나눴던 대화를 다시 듣는 기능 (대화 다시보기 기능을 수정 후 대화 페이지에서 사용?)
 - [ ] 사용자가 AI와 나눈 대화를 기준으로 피드백 기능
-- [ ] API Token 관리를 위한 나눈 대화 요약 기능
 - [ ] STT 기능 Web Speech API => Google Speech To Text API로 전환
 - [ ] TTS 기능 Web Speech API => Google Text To Speech API로 전환
 - [ ] 영어 외의 다양한 언어 지원 (일본어, 한국어)
