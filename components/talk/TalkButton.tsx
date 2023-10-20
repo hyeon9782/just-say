@@ -1,7 +1,8 @@
 "use client";
 import { VoiceIcon } from "@/composables/icons";
+import { SUMMARIZE } from "@/constants/summarize";
 import { rolePlaying } from "@/services/gpt";
-import { initGPT, textToSpeech } from "@/services/talk";
+import { arrayToString, initGPT, textToSpeech } from "@/services/talk";
 import useMessageStore from "@/stores/useMessageStore";
 import { Message, Messages, MessagesAction } from "@/types";
 import Image from "next/image";
@@ -19,7 +20,7 @@ const TalkButton = ({ success }: Props) => {
     | Messages;
 
   useEffect(() => {
-    const initData = initGPT({ lang: "en-US", type: "cafe" });
+    const initData = initGPT({ lang: "Korean", type: "cafe" });
     addMessage([initData]);
   }, [addMessage]);
 
@@ -32,6 +33,7 @@ const TalkButton = ({ success }: Props) => {
 
     const data = await res.json();
     console.log(data);
+    console.log(data.token);
 
     msgs.push({ role: "assistant", content: data.result });
 
@@ -44,6 +46,37 @@ const TalkButton = ({ success }: Props) => {
     }
 
     setLoading(false);
+
+    // token이 특정 값 이상이면 내용을 요약하자
+    if (data.token > 3500) {
+      const messagesStr = arrayToString(msgs);
+
+      const res = await fetch("/api/summarize", {
+        method: "POST",
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "system",
+              content: SUMMARIZE,
+            },
+            {
+              role: "user",
+              content: messagesStr,
+            },
+          ],
+        }),
+      }).then((res) => res.json());
+
+      const initData = initGPT({ lang: "Korean", type: "cafe" });
+
+      addMessage([
+        initData,
+        {
+          role: "user",
+          content: res.result,
+        },
+      ]);
+    }
   };
 
   useEffect(() => {
@@ -76,7 +109,7 @@ const TalkButton = ({ success }: Props) => {
     if (isRecording) {
       recognition = new SpeechRecognition();
       recognition.continuous = true;
-      recognition.lang = "en-US";
+      recognition.lang = "ko-KR";
       recognition.onresult = handleResult; // 이벤트 핸들러를 변수로 빼서 사용
       recognition.onerror = (event: any) => {
         console.error(event.error);

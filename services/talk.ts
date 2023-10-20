@@ -74,13 +74,17 @@ const initGPT = ({ type, lang }: InitGPT): Message => {
 };
 
 const arrayToString = (messages: Message[]) => {
-  const messagesStr = messages.map((message) => {
-    if (message.role === "user") {
-      return "User: " + message.content + ". ";
-    } else if (message.role === "user") {
-      return "GPT: " + message.content + ". ";
-    }
-  });
+  const messagesStr = messages
+    .map((message) => {
+      if (message.role === "user") {
+        return "User: " + message.content + ". ";
+      } else if (message.role === "user") {
+        return "GPT: " + message.content + ". ";
+      } else {
+        return `${message.content} `;
+      }
+    })
+    .join(" ");
 
   console.log(messagesStr);
 

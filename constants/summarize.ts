@@ -1,0 +1,1 @@
+export const SUMMARIZE = `I am currently doing a situation play with AI. I would like you to summarize the situation play between me and the AI ​​so far based on the information I have given you. When summarizing the content, add an explanation at the beginning that the content is summarized for token management, and explain at length in a line format rather than a script.`;
