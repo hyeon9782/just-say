@@ -1,12 +1,11 @@
 "use client";
 import { LeftArrow } from "@/composables/icons";
 
-const Back = ({ onPrev }: { onPrev: () => void }) => {
-  return (
-    <div onClick={onPrev}>
-      <LeftArrow className="text-5xl sm:text-7xl pt-[5px] sm:pt-[10px]" />
-    </div>
-  );
-};
+const Back = ({ onPrev }: { onPrev: () => void }) => (
+  <LeftArrow
+    onClick={onPrev}
+    className="text-3xl sm:text-7xl absolute top-2 left-2"
+  />
+);
 
 export default Back;

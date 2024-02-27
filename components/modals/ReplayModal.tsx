@@ -16,7 +16,7 @@ const ReplayModal = ({ onClose }: Props) => {
   };
   return (
     <Modal>
-      <div className="bg-blue-300 p-[20px] rounded-xl min-w-[400px] min-h-[500px] flex flex-col justify-between">
+      <div className="bg-blue-300 p-[20px] rounded-xl w-[90%] h-[70%] sm:w-[350px] sm:h-[500px] flex flex-col justify-between">
         <div className="flex flex-col gap-[10px] overflow-auto max-h-[350px] scroll-m-2">
           {messages?.map((message, index) => {
             if (message.role === "user") {

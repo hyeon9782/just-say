@@ -11,7 +11,7 @@ const CityArea = ({ onSelect, selectedData }: Props) => {
     (city) => city.language === selectedData.language
   );
   return (
-    <div className="flex flex-col justify-center mt-[60px] box-border sm:min-h-[700px] p-[10px]">
+    <div className="flex flex-col justify-center box-border h-full p-[10px]">
       <div className="text-center">
         <h1 className="text-2xl sm:text-4xl font-bold pb-[30px]">
           어디로 갈까요?

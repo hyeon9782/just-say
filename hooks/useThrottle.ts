@@ -21,7 +21,7 @@ function useThrottle<T>(value: T, delay: number): T {
         clearTimeout(timerId);
       }
     };
-  }, [value, delay]);
+  }, [value, delay, timerId]);
 
   return throttledValue;
 }

@@ -8,7 +8,7 @@ type Props = {
 };
 const SituationArea = ({ onSelect, selectedData }: Props) => {
   return (
-    <div className="flex flex-col justify-center select-container px-[10px]">
+    <div className="flex flex-col justify-center h-full px-[10px]">
       <div className="text-center">
         <h1 className="text-2xl sm:text-4xl font-bold pb-[30px]">
           어떤 상황에서 대화를 하고 싶으세요?

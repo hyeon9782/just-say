@@ -21,7 +21,7 @@ const PreparationArea = ({ selectedData, onNext }: Props) => {
     setIsRecording(!isRecording);
   };
   return (
-    <div className="select-container box-border flex flex-col justify-center  sm:min-h-[800px] px-[10px]">
+    <div className="h-full box-border flex flex-col justify-center px-[10px]">
       <div className="text-center">
         <h1 className="text-2xl sm:text-4xl font-bold mb-[20px] sm:mb-[50px] leading-normal">
           {city?.ko} {situation?.ko}에 도착했습니다. <br />
@@ -32,7 +32,7 @@ const PreparationArea = ({ selectedData, onNext }: Props) => {
         </p>
       </div>
       <div className="flex justify-center pb-[20px] sm:pb-[30px]">
-        <div className="h-[200px] sm:h-[300px] w-[70%] bg-blue-300 overflow-auto rounded-2xl bg-opacity-30 py-[10px] px-[15px]">
+        <div className="h-[200px] sm:h-[300px] w-[90%] bg-blue-300 overflow-auto rounded-2xl bg-opacity-30 py-[10px] px-[15px]">
           {text}
         </div>
       </div>

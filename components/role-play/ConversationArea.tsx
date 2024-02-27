@@ -19,7 +19,7 @@ const ConversationArea = ({ selectedData, result }: Props) => {
   const [confirmModal, setConfirmModal] = useState(false);
   return (
     <>
-      <div className="select-container">
+      <div className="h-full">
         <div className="h-[70%] flex flex-col bg-gray-100">
           <div className="flex justify-end h-[10%]">
             <CloseIcon
