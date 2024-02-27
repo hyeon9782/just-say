@@ -39,11 +39,3 @@ export type Message = {
   role: string;
   content: string;
 };
-
-export type MessagesAction = {
-  addMessage: (newMessage: Message) => void;
-};
-
-export type Messages = {
-  messages: Message[];
-};

@@ -12,7 +12,6 @@ export const callGPTAPI = async (messages: Message[]) => {
       body: JSON.stringify({ messages }),
     });
 
-    // 다음 로직
     return response;
   } catch (error) {
     console.error("Error in rolePlaying:", error);

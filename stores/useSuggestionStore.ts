@@ -1,13 +1,19 @@
 import { create } from "zustand";
 
-const useSuggestionStore = create((set) => ({
+type State = {
+  suggestions: string[];
+};
+
+type Actions = {
+  addSuggestion: (newSugesstions: string[]) => void;
+};
+
+const useSuggestionStore = create<State & Actions>((set) => ({
   suggestions: [],
-  addSuggestion: (newSugesstions: string[]) => {
-    console.log(newSugesstions);
+  addSuggestion: (newSugesstions: string[]) =>
     set(() => ({
       suggestions: [...newSugesstions],
-    }));
-  },
+    })),
 }));
 
 export default useSuggestionStore;

@@ -6,7 +6,7 @@ import { rolePlaying } from "@/services/gpt";
 import { arrayToString, initGPT, textToSpeech } from "@/services/talk";
 import useMessageStore from "@/stores/useMessageStore";
 import useSuggestionStore from "@/stores/useSuggestionStore";
-import { Message, Messages, MessagesAction } from "@/types";
+import { Message } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 type Props = {
@@ -18,9 +18,7 @@ const TalkButton = ({ success }: Props) => {
   const [loading, setLoading] = useState(false);
   const { addSuggestion } = useSuggestionStore();
 
-  const { messages, addMessage } = useMessageStore() as
-    | MessagesAction
-    | Messages;
+  const { messages, addMessage } = useMessageStore();
 
   useEffect(() => {
     const initData = initGPT({ lang: "Korean", type: "cafe" });
