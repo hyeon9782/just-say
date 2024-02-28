@@ -9,6 +9,9 @@ import useSuggestionStore from "@/stores/useSuggestionStore";
 import { Message } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+
+const LANG = ["English", "Korean"];
+
 type Props = {
   success: () => void;
 };
@@ -21,7 +24,7 @@ const TalkButton = ({ success }: Props) => {
   const { messages, addMessage } = useMessageStore();
 
   useEffect(() => {
-    const initData = initGPT({ lang: "Korean", type: "cafe" });
+    const initData = initGPT({ lang: "English", type: "cafe" });
     addMessage([initData]);
   }, [addMessage]);
 
@@ -71,6 +74,8 @@ const TalkButton = ({ success }: Props) => {
       const answerList = res.result.split("/");
       addSuggestion(answerList);
     }
+
+    console.log(data);
 
     // token이 특정 값 이상이면 내용을 요약하자
     if (data.token > 3500) {
@@ -134,7 +139,7 @@ const TalkButton = ({ success }: Props) => {
     if (isRecording) {
       recognition = new SpeechRecognition();
       recognition.continuous = true;
-      recognition.lang = "ko-KR";
+      recognition.lang = "en-US";
       recognition.onresult = handleResult; // 이벤트 핸들러를 변수로 빼서 사용
       recognition.onerror = (event: any) => {
         console.error(event.error);

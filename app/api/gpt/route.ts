@@ -1,5 +1,5 @@
 import { GPT_3_5_TURBO_0613 } from "@/constants/prompt";
-import { openai } from "@/libs/gpt";
+import { openai } from "@/libs/openai";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {

@@ -1,5 +1,6 @@
 import Button from "@/composables/Button";
 import { SELECT_DATA } from "@/constants/select-data";
+import { useRecordVoice } from "@/hooks/useRecordVoice";
 import useSpeechToText from "@/hooks/useSpeechToText";
 import { SelectedData } from "@/types";
 import { useState } from "react";
@@ -10,16 +11,19 @@ type Props = {
 };
 
 const PreparationArea = ({ selectedData, onNext }: Props) => {
-  const [isRecording, setIsRecording] = useState(false);
-  let text = useSpeechToText({ isRecording, lang: "en-US" });
+  // const [isRecording, setIsRecording] = useState(false);
+  // let text = useSpeechToText({ isRecording, lang: "en-US" });
+  const { startRecording, stopRecording, text, isRecording } = useRecordVoice(
+    {}
+  );
   const situation = SELECT_DATA.SITUATIONS.find(
     (situation) => situation.en === selectedData.situation
   );
   const city = SELECT_DATA.CITIES.find((city) => city.en === selectedData.city);
 
-  const handleMikeTest = () => {
-    setIsRecording(!isRecording);
-  };
+  // const handleMikeTest = () => {
+  //   setIsRecording(!isRecording);
+  // };
   return (
     <div className="h-full box-border flex flex-col justify-center px-[10px]">
       <div className="text-center">
@@ -37,9 +41,17 @@ const PreparationArea = ({ selectedData, onNext }: Props) => {
         </div>
       </div>
       <div className="flex flex-col w-[70%] m-auto my-0 sm:w-full sm:flex-row gap-[10px] sm:gap-[50px]">
-        <Button type="fill" size="lg" onClick={handleMikeTest}>
+        {/* <Button type="fill" size="lg" onClick={handleMikeTest}>
           {isRecording ? "마이크 테스트 종료" : "마이크 테스트 시작"}
-        </Button>
+        </Button> */}
+        <button
+          onMouseDown={startRecording}
+          onMouseUp={stopRecording}
+          onTouchStart={startRecording}
+          onTouchEnd={stopRecording}
+        >
+          {isRecording ? "마이크 테스트 종료" : "마이크 테스트 시작"}
+        </button>
         <Button type="fill" size="lg" onClick={onNext}>
           대화 시작
         </Button>

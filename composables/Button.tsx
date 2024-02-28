@@ -6,9 +6,19 @@ type Props = {
   type?: "fill" | "outline" | "view";
   size?: "sm" | "md" | "lg";
 };
-const Button = ({ children, onClick, type = "fill", size = "sm" }: Props) => {
+const Button = ({
+  children,
+  onClick,
+  type = "fill",
+  size = "sm",
+  ...props
+}: Props) => {
   return (
-    <button className={generateClassStr(type, size)} onClick={onClick}>
+    <button
+      className={generateClassStr(type, size)}
+      onClick={onClick}
+      {...props}
+    >
       {children}
     </button>
   );
