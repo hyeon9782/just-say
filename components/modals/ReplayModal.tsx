@@ -1,17 +1,25 @@
 "use client";
+import { googleTTS } from "@/api/google";
 import Button from "@/composables/Button";
 import Modal from "@/composables/Modal";
 import { SpeakerIcon } from "@/composables/icons";
-import { textToSpeech } from "@/services/talk";
 import useMessageStore from "@/stores/useMessageStore";
+import { useRef } from "react";
 
 type Props = {
   onClose: () => void;
 };
 const ReplayModal = ({ onClose }: Props) => {
+  const audioRef = useRef<HTMLAudioElement>(null);
   const { messages } = useMessageStore();
-  const handleReplay = (content: string) => {
-    textToSpeech({ text: content });
+  const handleReplay = async (content: string) => {
+    const response = await googleTTS(content);
+
+    if (audioRef.current) {
+      const audioSrc = `data:audio/mp3;base64,${response.audioContent}`;
+      audioRef.current.src = audioSrc;
+      await audioRef.current.play();
+    }
   };
   return (
     <Modal>
@@ -59,6 +67,7 @@ const ReplayModal = ({ onClose }: Props) => {
           </Button>
         </div>
       </div>
+      <audio controls ref={audioRef} className="hidden"></audio>
     </Modal>
   );
 };

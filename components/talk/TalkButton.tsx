@@ -2,13 +2,13 @@
 import { googleTTS } from "@/api/google";
 import { VoiceIcon } from "@/composables/icons";
 import { useRecordVoice } from "@/hooks/useRecordVoice";
-import { openaiGPT, rolePlaying, suggestion, summarize } from "@/api/openai";
-import { arrayToString, initGPT } from "@/services/talk";
+import { openaiGPT } from "@/api/openai";
 import useMessageStore from "@/stores/useMessageStore";
 import useSuggestionStore from "@/stores/useSuggestionStore";
 import Image from "next/image";
-import { Message } from "postcss";
+
 import { useEffect, useRef, useState } from "react";
+import { Message } from "@/types";
 
 type Props = {
   success: () => void;
