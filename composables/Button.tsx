@@ -5,18 +5,23 @@ type Props = {
   onClick: () => void;
   type?: "fill" | "outline" | "view";
   size?: "sm" | "md" | "lg";
+  disabled?: boolean;
 };
 const Button = ({
   children,
   onClick,
   type = "fill",
   size = "sm",
+  disabled,
   ...props
 }: Props) => {
   return (
     <button
-      className={generateClassStr(type, size)}
+      className={`${generateClassStr(type, size)} ${
+        disabled ? "opacity-10" : ""
+      }`}
       onClick={onClick}
+      disabled={disabled}
       {...props}
     >
       {children}

@@ -26,6 +26,7 @@ const CityArea = ({ onSelect, selectedData }: Props) => {
             key={index}
             city={city}
             onSelect={() => onSelect("city", city.en)}
+            disabled={city.ko === "더블린"}
           />
         ))}
       </div>

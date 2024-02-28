@@ -24,6 +24,7 @@ const SituationArea = ({ onSelect, selectedData }: Props) => {
             type="outline"
             size="lg"
             onClick={() => onSelect("situation", situation.en)}
+            disabled={situation.ko === "택시"}
           >
             {situation.ko}
           </Button>

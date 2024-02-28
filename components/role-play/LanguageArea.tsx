@@ -17,6 +17,7 @@ const LanguageArea = ({ onSelect }: Props) => {
             type="outline"
             size="lg"
             onClick={() => onSelect("language", language.en)}
+            disabled={language.en === "jp"}
           >
             {language.ko}
           </Button>
