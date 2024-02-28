@@ -1,12 +1,14 @@
 "use client";
 import { VoiceIcon } from "@/composables/icons";
+import { SUGGESTION } from "@/constants/suggestion";
+import { SUMMARIZE } from "@/constants/summarize";
 import { useRecordVoice } from "@/hooks/useRecordVoice";
-import { rolePlaying, suggestion, summarize } from "@/services/gpt";
+import { rolePlaying } from "@/services/gpt";
 import { arrayToString, initGPT, textToSpeech } from "@/services/talk";
 import useMessageStore from "@/stores/useMessageStore";
 import useSuggestionStore from "@/stores/useSuggestionStore";
+import { Message } from "@/types";
 import Image from "next/image";
-import { Message } from "postcss";
 import { useEffect, useState } from "react";
 
 const LANG = ["English", "Korean"];
@@ -19,6 +21,7 @@ const TalkButton = ({ success }: Props) => {
   const [isRecording, setIsRecording] = useState(false);
   const [loading, setLoading] = useState(false);
   const { addSuggestion } = useSuggestionStore();
+
   const { messages, addMessage } = useMessageStore();
 
   useEffect(() => {
@@ -53,7 +56,23 @@ const TalkButton = ({ success }: Props) => {
     if (true) {
       const messagesStr = arrayToString(msgs);
 
-      const answerList = await suggestion(messagesStr);
+      const res = await fetch("/api/suggestion", {
+        method: "POST",
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "system",
+              content: SUGGESTION,
+            },
+            {
+              role: "user",
+              content: messagesStr,
+            },
+          ],
+        }),
+      }).then((res) => res.json());
+      console.log(res);
+      const answerList = res.result.split("/");
       addSuggestion(answerList);
     }
 
@@ -63,7 +82,21 @@ const TalkButton = ({ success }: Props) => {
     if (data.token > 3500) {
       const messagesStr = arrayToString(msgs);
 
-      const result = await summarize(messagesStr);
+      const res = await fetch("/api/summarize", {
+        method: "POST",
+        body: JSON.stringify({
+          messages: [
+            {
+              role: "system",
+              content: SUMMARIZE,
+            },
+            {
+              role: "user",
+              content: messagesStr,
+            },
+          ],
+        }),
+      }).then((res) => res.json());
 
       const initData = initGPT({ lang: "Korean", type: "cafe" });
 
@@ -71,16 +104,11 @@ const TalkButton = ({ success }: Props) => {
         initData,
         {
           role: "user",
-          content: result,
+          content: res.result,
         },
       ]);
     }
   };
-
-  // const { startRecording, stopRecording, isRecording, text } = useRecordVoice({
-  //   lang: "en-US",
-  //   callback: () => callGPT(), // GPT 호출 함수를 callback으로 전달
-  // });
 
   useEffect(() => {
     const SpeechRecognition =
@@ -157,10 +185,6 @@ const TalkButton = ({ success }: Props) => {
                   : "bg-white text-sky-blue"
               }`}
               onClick={handleClick}
-              // onMouseDown={startRecording}
-              // onMouseUp={stopRecording}
-              // onTouchStart={startRecording}
-              // onTouchEnd={stopRecording}
             >
               <VoiceIcon className="text-4xl sm:text-7xl " />
             </div>

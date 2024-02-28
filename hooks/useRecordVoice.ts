@@ -1,8 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 type UseRecordVoice = {
   lang?: string;
+  callback?: () => void;
 };
-export const useRecordVoice = ({ lang = "en-US" }: UseRecordVoice) => {
+export const useRecordVoice = ({
+  lang = "en-US",
+  callback,
+}: UseRecordVoice) => {
   const [isRecording, setIsRecording] = useState<boolean>(false);
   const [text, setText] = useState<string>("");
   const recognitionRef = useRef<any>(null);
@@ -10,7 +14,7 @@ export const useRecordVoice = ({ lang = "en-US" }: UseRecordVoice) => {
   const SpeechRecognition =
     window.SpeechRecognition || window.webkitSpeechRecognition;
 
-  const handleResult = (event: any) => {
+  const handleResult = async (event: any) => {
     const results = event.results;
     const contents: string[] = [];
     Object.keys(results).forEach((key) =>
@@ -18,6 +22,8 @@ export const useRecordVoice = ({ lang = "en-US" }: UseRecordVoice) => {
     );
     const content = contents.join(" ");
     setText(content);
+
+    await callback?.();
   };
 
   const startRecording = () => {

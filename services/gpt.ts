@@ -1,4 +1,6 @@
 import { Message } from "@/types";
+import { SUGGESTION } from "@/constants/suggestion";
+import { SUMMARIZE } from "@/constants/summarize";
 
 const rolePlaying = async (messages: Message[]) => {
   try {
@@ -20,4 +22,44 @@ const rolePlaying = async (messages: Message[]) => {
   }
 };
 
-export { rolePlaying };
+const suggestion = async (messagesStr: string) => {
+  const res = await fetch("/api/suggestion", {
+    method: "POST",
+    body: JSON.stringify({
+      messages: [
+        {
+          role: "system",
+          content: SUGGESTION,
+        },
+        {
+          role: "user",
+          content: messagesStr,
+        },
+      ],
+    }),
+  }).then((res) => res.json());
+
+  return res.result.split("/");
+};
+
+const summarize = async (messagesStr: string) => {
+  const res = await fetch("/api/summarize", {
+    method: "POST",
+    body: JSON.stringify({
+      messages: [
+        {
+          role: "system",
+          content: SUMMARIZE,
+        },
+        {
+          role: "user",
+          content: messagesStr,
+        },
+      ],
+    }),
+  }).then((res) => res.json());
+
+  return res.result;
+};
+
+export { rolePlaying, suggestion, summarize };
