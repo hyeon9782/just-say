@@ -1,3 +1,4 @@
+import { LANGUAGE, VOICE_NAME } from "@/constants/google";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
@@ -9,9 +10,9 @@ export async function POST(request: NextRequest) {
       text,
     },
     voice: {
-      languageCode: "en-gb",
-      name: "en-GB-Standard-A",
-      ssmlGender: "FEMALE",
+      languageCode: LANGUAGE.IN,
+      name: VOICE_NAME.IN.Standard.A,
+      // ssmlGender: "FEMALE",
     },
     audioConfig: {
       audioEncoding: "MP3",

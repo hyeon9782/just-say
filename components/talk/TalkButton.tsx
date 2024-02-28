@@ -1,4 +1,5 @@
 "use client";
+import { googleTTS } from "@/api/google";
 import { VoiceIcon } from "@/composables/icons";
 import { useRecordVoice } from "@/hooks/useRecordVoice";
 import { rolePlaying, suggestion, summarize } from "@/services/gpt";
@@ -7,7 +8,7 @@ import useMessageStore from "@/stores/useMessageStore";
 import useSuggestionStore from "@/stores/useSuggestionStore";
 import Image from "next/image";
 import { Message } from "postcss";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const LANG = ["English", "Korean"];
 
@@ -16,6 +17,7 @@ type Props = {
 };
 const TalkButton = ({ success }: Props) => {
   console.log("TalkButtonTest rendered");
+  const audioRef = useRef<HTMLAudioElement>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [loading, setLoading] = useState(false);
   const { addSuggestion } = useSuggestionStore();
@@ -41,7 +43,15 @@ const TalkButton = ({ success }: Props) => {
 
     addMessage(msgs);
 
-    textToSpeech({ text: data.result });
+    // textToSpeech({ text: data.result });
+
+    const response = await googleTTS(data.result);
+
+    if (audioRef.current) {
+      const audioSrc = `data:audio/mp3;base64,${response.audioContent}`;
+      audioRef.current.src = audioSrc;
+      await audioRef.current.play();
+    }
 
     if (data.result.includes("@")) {
       success();
@@ -167,6 +177,7 @@ const TalkButton = ({ success }: Props) => {
           </div>
         </div>
       )}
+      <audio controls ref={audioRef} className="hidden"></audio>
     </div>
   );
 };

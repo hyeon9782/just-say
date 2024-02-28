@@ -1,0 +1,177 @@
+export const LANGUAGE = {
+  KR: "ko-KR",
+  US: "en-US",
+  AU: "en-AU",
+  IN: "en-IN",
+  GB: "en-GB",
+};
+
+export const VOICE_NAME = {
+  US: {
+    Casual: {
+      K: "en-US-Casual-K",
+    },
+    Journey: {
+      D: "en-US-Journey-D",
+      F: "en-US-Journey-F",
+    },
+    Neural2: {
+      A: "en-US-Neural2-A",
+      C: "en-US-Neural2-C",
+      D: "en-US-Neural2-D",
+      E: "en-US-Neural2-E",
+      F: "en-US-Neural2-F",
+      G: "en-US-Neural2-G",
+      H: "en-US-Neural2-H",
+      I: "en-US-Neural2-I",
+      J: "en-US-Neural2-J",
+    },
+    News: {
+      K: "en-US-News-K",
+      L: "en-US-News-L",
+      N: "en-US-News-N",
+    },
+    Standard: {
+      A: "en-US-Standard-A",
+      B: "en-US-Standard-B",
+      C: "en-US-Standard-C",
+      D: "en-US-Standard-D",
+      E: "en-US-Standard-E",
+      F: "en-US-Standard-F",
+      G: "en-US-Standard-G",
+      H: "en-US-Standard-H",
+      I: "en-US-Standard-I",
+      J: "en-US-Standard-J",
+    },
+    Studio: {
+      O: "en-US-Studio-O",
+      Q: "en-US-Studio-Q",
+    },
+    Wavenet: {
+      A: "en-US-Wavenet-A",
+      B: "en-US-Wavenet-B",
+      C: "en-US-Wavenet-C",
+      D: "en-US-Wavenet-D",
+      E: "en-US-Wavenet-E",
+      F: "en-US-Wavenet-F",
+      G: "en-US-Wavenet-G",
+      H: "en-US-Wavenet-H",
+      I: "en-US-Wavenet-I",
+      J: "en-US-Wavenet-J",
+    },
+  },
+  AU: {
+    Neural2: {
+      A: "en-AU-Neural2-A",
+      B: "en-AU-Neural2-B",
+      C: "en-AU-Neural2-C",
+      D: "en-AU-Neural2-D",
+    },
+    News: {
+      E: "en-AU-News-E",
+      F: "en-AU-News-F",
+      G: "en-AU-News-G",
+    },
+    Standard: {
+      1: "en-AU-Polyglot-1",
+      A: "en-AU-Standard-A",
+      B: "en-AU-Standard-B",
+      C: "en-AU-Standard-C",
+      D: "en-AU-Standard-D",
+    },
+    Wavenet: {
+      A: "en-AU-Wavenet-A",
+      B: "en-AU-Wavenet-B",
+      C: "en-AU-Wavenet-C",
+      D: "en-AU-Wavenet-D",
+    },
+  },
+  IN: {
+    Neural2: {
+      A: "en-IN-Neural2-A",
+      B: "en-IN-Neural2-B",
+      C: "en-IN-Neural2-C",
+      D: "en-IN-Neural2-D",
+    },
+    Standard: {
+      A: "en-IN-Standard-A",
+      B: "en-IN-Standard-B",
+      C: "en-IN-Standard-C",
+      D: "en-IN-Standard-D",
+    },
+    Wavenet: {
+      A: "en-IN-Wavenet-A",
+      B: "en-IN-Wavenet-B",
+      C: "en-IN-Wavenet-C",
+      D: "en-IN-Wavenet-D",
+    },
+  },
+  GB: {
+    Neural2: {
+      A: "en-GB-Neural2-A",
+      B: "en-GB-Neural2-B",
+      C: "en-GB-Neural2-C",
+      D: "en-GB-Neural2-D",
+      F: "en-GB-Neural2-F",
+    },
+    News: {
+      G: "en-GB-News-G",
+      H: "en-GB-News-H",
+      I: "en-GB-News-I",
+      J: "en-GB-News-J",
+      K: "en-GB-News-K",
+      L: "en-GB-News-L",
+      M: "en-GB-News-M",
+    },
+    Standard: {
+      A: "en-GB-Standard-A",
+      B: "en-GB-Standard-B",
+      C: "en-GB-Standard-C",
+      D: "en-GB-Standard-D",
+      F: "en-GB-Standard-F",
+    },
+    Studio: {
+      B: "en-GB-Studio-B",
+      C: "en-GB-Studio-C",
+    },
+    Wavenet: {
+      A: "en-GB-Wavenet-A",
+      B: "en-GB-Wavenet-B",
+      C: "en-GB-Wavenet-C",
+      D: "en-GB-Wavenet-D",
+      F: "en-GB-Wavenet-F",
+    },
+  },
+};
+
+export const SPEED = {
+  "0.25": 0.25,
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+};
+
+export const PITCH = {
+  0: 0,
+  1: 1,
+  2: 2,
+  3: 3,
+  4: 4,
+  5: 5,
+  6: 6,
+  7: 7,
+  8: 8,
+  9: 9,
+  10: 10,
+  11: 11,
+  12: 12,
+  13: 13,
+  14: 14,
+  15: 15,
+  16: 16,
+  17: 17,
+  18: 18,
+  19: 19,
+  20: 20,
+};

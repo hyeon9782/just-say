@@ -6,7 +6,7 @@ const rolePlaying = async (messages: Message[]) => {
   try {
     console.log("rolePlaying");
 
-    const response = await fetch("/api/gpt", {
+    const response = await fetch("/api/openai", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
