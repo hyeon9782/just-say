@@ -1,28 +1,8 @@
-"use client";
-
 import StartButton from "@/components/StartButton";
 import Container from "@/composables/Container";
 import Image from "next/image";
-import { useRef } from "react";
 
 export default function HomePage() {
-  const audioRef = useRef<HTMLAudioElement>(null);
-
-  const handleClick = async () => {
-    const response = await fetch("/api/google/synthesize", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text: "Hello! my name is hoya" }),
-    }).then((res) => res.json());
-
-    if (audioRef.current) {
-      const audioSrc = `data:audio/mp3;base64,${response.audioContent}`;
-      audioRef.current.src = audioSrc;
-      await audioRef.current.play();
-    }
-  };
   return (
     <Container>
       <div className="flex items-center justify-center h-full">
@@ -42,8 +22,6 @@ export default function HomePage() {
             두려움없이 외국어를 말할 수 있도록. <br />될 때까지 말해보세요!
           </p>
           <StartButton>시작하기</StartButton>
-          <button onClick={handleClick}>테스트</button>
-          <audio controls ref={audioRef}></audio>
         </div>
         <div className="hidden sm:block sm:w-[40%] ">
           <Image

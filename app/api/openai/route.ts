@@ -1,13 +1,17 @@
 import { GPT_3_5_TURBO_0613 } from "@/constants/prompt";
+import { SUGGESTION } from "@/constants/suggestion";
+import { SUMMARIZE } from "@/constants/summarize";
 import { openai } from "@/libs/openai";
+import { initGPT } from "@/services/talk";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
     console.log("Route 들어옴");
 
-    const { messages } = await request.json();
+    const { messages, type } = await request.json();
     console.log(messages);
+    console.log(type);
 
     // const functions = [
     //   {
@@ -33,9 +37,31 @@ export async function POST(request: NextRequest) {
     //   },
     // ];
 
+    let system = "";
+
+    switch (type) {
+      case "rolePlaying":
+        system = initGPT({ type: "cafe", lang: "English" });
+        break;
+      case "suggestion":
+        system = SUGGESTION;
+        break;
+      case "summarize":
+        system = SUMMARIZE;
+        break;
+    }
+
+    console.log(system);
+
     const chatCompletion = await openai.chat.completions.create({
-      messages,
       model: GPT_3_5_TURBO_0613,
+      messages: [
+        {
+          role: "system",
+          content: system,
+        },
+        ...messages,
+      ],
       // functions,
       // function_call: "auto",
     });

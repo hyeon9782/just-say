@@ -2,15 +2,13 @@
 import { googleTTS } from "@/api/google";
 import { VoiceIcon } from "@/composables/icons";
 import { useRecordVoice } from "@/hooks/useRecordVoice";
-import { rolePlaying, suggestion, summarize } from "@/services/gpt";
-import { arrayToString, initGPT, textToSpeech } from "@/services/talk";
+import { openaiGPT, rolePlaying, suggestion, summarize } from "@/api/openai";
+import { arrayToString, initGPT } from "@/services/talk";
 import useMessageStore from "@/stores/useMessageStore";
 import useSuggestionStore from "@/stores/useSuggestionStore";
 import Image from "next/image";
 import { Message } from "postcss";
 import { useEffect, useRef, useState } from "react";
-
-const LANG = ["English", "Korean"];
 
 type Props = {
   success: () => void;
@@ -23,29 +21,17 @@ const TalkButton = ({ success }: Props) => {
   const { addSuggestion } = useSuggestionStore();
   const { messages, addMessage } = useMessageStore();
 
-  useEffect(() => {
-    const initData = initGPT({ lang: "English", type: "cafe" });
-    addMessage([initData]);
-  }, [addMessage]);
-
   const callGPT = async (msgs: Message[]) => {
     // 입력 값이 없을 경우 GPT 호출 방지
     if (msgs[msgs.length - 1].content === "") return;
     setLoading(true);
-    // GPT API 호출
-    const res = await rolePlaying(msgs);
+    const { result, token } = await openaiGPT(msgs, "rolePlaying");
 
-    const data = await res.json();
-    console.log(data);
-    console.log(data.token);
-
-    msgs.push({ role: "assistant", content: data.result });
+    msgs.push({ role: "assistant", content: result });
 
     addMessage(msgs);
 
-    // textToSpeech({ text: data.result });
-
-    const response = await googleTTS(data.result);
+    const response = await googleTTS(result);
 
     if (audioRef.current) {
       const audioSrc = `data:audio/mp3;base64,${response.audioContent}`;
@@ -53,7 +39,7 @@ const TalkButton = ({ success }: Props) => {
       await audioRef.current.play();
     }
 
-    if (data.result.includes("@")) {
+    if (result.includes("@")) {
       success();
     }
 
@@ -61,24 +47,16 @@ const TalkButton = ({ success }: Props) => {
 
     // 추천 답변 기능이 켜져있다면 추천 답변 요청
     if (true) {
-      const messagesStr = arrayToString(msgs);
-
-      const answerList = await suggestion(messagesStr);
+      const { result } = await openaiGPT(msgs, "suggestion");
+      const answerList = result.split("/");
       addSuggestion(answerList);
     }
 
-    console.log(data);
-
     // token이 특정 값 이상이면 내용을 요약하자
-    if (data.token > 3500) {
-      const messagesStr = arrayToString(msgs);
-
-      const result = await summarize(messagesStr);
-
-      const initData = initGPT({ lang: "Korean", type: "cafe" });
+    if (token > 3500) {
+      const { result } = await openaiGPT(msgs, "summarize");
 
       addMessage([
-        initData,
         {
           role: "user",
           content: result,

@@ -1,27 +1,7 @@
 import { CAFE } from "@/constants/cafe";
-import { InitGPT, Message, TextToSpeech } from "@/types";
+import { InitGPT, Message } from "@/types";
 
-const textToSpeech = ({
-  rate = 3,
-  pitch = 2,
-  lang = "ko-KR",
-  volume = 0.5,
-  text = "음성이 없습니다.",
-}: TextToSpeech) => {
-  speechSynthesis.cancel(); // 현재 읽고 있다면 초기화
-
-  const utterance = new SpeechSynthesisUtterance();
-  utterance.rate = rate; // 속도 (0.1 ~ 10)
-  utterance.pitch = pitch; // 음 높이 (0 ~ 2)
-  utterance.lang = lang; // 언어
-  utterance.text = text; // 내용
-  utterance.volume = volume; // 음성의 크기 0.0 ~ 1.0
-  console.log(speechSynthesis.getVoices());
-
-  speechSynthesis.speak(utterance);
-};
-
-const initGPT = ({ type, lang }: InitGPT): Message => {
+const initGPT = ({ type, lang }: InitGPT): string => {
   let menu_num = CAFE.menu_list.length;
   const menus = CAFE.menu_list.map((item) => item.menu);
   const prices = CAFE.menu_list.map((item) => item.price);
@@ -68,9 +48,9 @@ const initGPT = ({ type, lang }: InitGPT): Message => {
     "The following is the start of conversation with customer and start talking 'Welcome!' include another one sentence.";
   define_bot_role += notice_msg;
 
-  const system = { role: "system", content: define_bot_role };
+  // const system = { role: "system", content: define_bot_role };
 
-  return system;
+  return define_bot_role;
 };
 
 const arrayToString = (messages: Message[]) => {
@@ -89,4 +69,4 @@ const arrayToString = (messages: Message[]) => {
   return messagesStr;
 };
 
-export { textToSpeech, initGPT, arrayToString };
+export { initGPT, arrayToString };
