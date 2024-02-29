@@ -1,8 +1,7 @@
-import { LANGUAGE, VOICE_NAME } from "@/constants/google";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
-  const { text } = await request.json();
+  const { text, languageCode, name } = await request.json();
   const apikey = process.env.GOOGLE_API_KEY;
   const endpoint = `https://texttospeech.googleapis.com/v1/text:synthesize?key=${apikey}`;
   const payload = {
@@ -10,8 +9,8 @@ export async function POST(request: NextRequest) {
       text,
     },
     voice: {
-      languageCode: LANGUAGE.IN,
-      name: VOICE_NAME.IN.Standard.A,
+      languageCode,
+      name,
       // ssmlGender: "FEMALE",
     },
     audioConfig: {

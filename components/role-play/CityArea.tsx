@@ -1,6 +1,7 @@
 import { SELECT_DATA } from "@/constants/select-data";
 import Card from "../Card";
 import { SelectedData } from "@/types";
+import { getVoiceNames } from "@/services/talk";
 
 type Props = {
   onSelect: (key: string, value: string) => void;
@@ -10,6 +11,13 @@ const CityArea = ({ onSelect, selectedData }: Props) => {
   const selectCities = SELECT_DATA.CITIES.filter(
     (city) => city.language === selectedData.language
   );
+
+  const handleClick = (languageCode: string) => {
+    onSelect("language_code", languageCode);
+    const voice_name = getVoiceNames(languageCode);
+
+    onSelect("voice_name", voice_name);
+  };
   return (
     <div className="flex flex-col justify-center box-border h-full p-[10px]">
       <div className="text-center">
@@ -25,7 +33,7 @@ const CityArea = ({ onSelect, selectedData }: Props) => {
           <Card
             key={index}
             city={city}
-            onSelect={() => onSelect("city", city.en)}
+            onSelect={() => handleClick(city.language_code)}
             disabled={city.ko === "더블린"}
           />
         ))}

@@ -49,7 +49,10 @@ const ConversationArea = ({ selectedData, result }: Props) => {
           </div>
         </div>
         <div className="h-[30%] box-border flex flex-col justify-center items-center bg-gray-200">
-          <TalkButton success={() => result(true)} />
+          <TalkButton
+            success={() => result(true)}
+            selectedData={selectedData}
+          />
         </div>
       </div>
       {menuModal && <MenuModal onClose={() => setMenuModal(false)} />}

@@ -8,12 +8,13 @@ import useSuggestionStore from "@/stores/useSuggestionStore";
 import Image from "next/image";
 
 import { useEffect, useRef, useState } from "react";
-import { Message } from "@/types";
+import { Message, SelectedData } from "@/types";
 
 type Props = {
   success: () => void;
+  selectedData: SelectedData;
 };
-const TalkButton = ({ success }: Props) => {
+const TalkButton = ({ success, selectedData }: Props) => {
   console.log("TalkButtonTest rendered");
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isRecording, setIsRecording] = useState(false);
@@ -31,7 +32,11 @@ const TalkButton = ({ success }: Props) => {
 
     addMessage(msgs);
 
-    const response = await googleTTS(result);
+    const response = await googleTTS({
+      text: result,
+      languageCode: selectedData.language_code,
+      name: selectedData.voice_name,
+    });
 
     if (audioRef.current) {
       const audioSrc = `data:audio/mp3;base64,${response.audioContent}`;

@@ -15,24 +15,28 @@ export const SELECT_DATA = {
       en: "newyork",
       img: "/images/city_newyork.png",
       language: "en",
+      language_code: "en-US",
     },
     {
       ko: "런던",
       en: "london",
       img: "/images/city_london.png",
       language: "en",
+      language_code: "en-GB",
     },
     {
       ko: "시드니",
       en: "sydney",
       img: "/images/city_sydney.png",
       language: "en",
+      language_code: "en-AU",
     },
     {
       ko: "더블린",
       en: "dublin",
       img: "/images/city_dublin.png",
       language: "en",
+      language_code: "en-IN",
     },
     {
       ko: "고베",

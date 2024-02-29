@@ -21,7 +21,8 @@ const RolePlayPage = () => {
   const [step, setStep] = useState<Step>("언어");
   const [selectedData, setSelectedData] = useState<SelectedData>({
     language: "",
-    city: "",
+    language_code: "",
+    voice_name: "",
     situation: "",
   });
   const [isSuccess, setIsSuccess] = useState(false);

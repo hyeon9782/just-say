@@ -1,4 +1,5 @@
 import { CAFE } from "@/constants/cafe";
+import { VOICE_NAME } from "@/constants/google";
 import { InitGPT, Message } from "@/types";
 
 const initGPT = ({ type, lang }: InitGPT): string => {
@@ -69,4 +70,19 @@ const arrayToString = (messages: Message[]) => {
   return messagesStr;
 };
 
-export { initGPT, arrayToString };
+function getVoiceNames(languageCode: string) {
+  const voiceData = VOICE_NAME[languageCode];
+  if (!voiceData) {
+    return "해당 언어 코드에 대한 데이터가 없습니다.";
+  }
+
+  const voiceNames = [];
+  for (const voice in voiceData) {
+    voiceNames.push(voiceData[voice].voice_name);
+  }
+
+  const randomIndex = Math.floor(Math.random() * voiceNames.length);
+  return voiceNames[randomIndex];
+}
+
+export { initGPT, arrayToString, getVoiceNames };

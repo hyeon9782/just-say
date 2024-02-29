@@ -18,7 +18,8 @@ export type Situation = {
 
 export type SelectedData = {
   language: string;
-  city: string;
+  language_code: string;
+  voice_name: string;
   situation: string;
 };
 
