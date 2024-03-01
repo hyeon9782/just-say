@@ -75,7 +75,7 @@ Styled Components -> TailwindCSS
 - [ ] GPT Function calling 기능으로 정형화된 반환값 받기기
 - [ ] 사용자가 AI와 나눈 대화를 기준으로 피드백 기능
 - [ ] STT 기능 Web Speech API => Google Speech To Text API로 전환
-- [ ] TTS 기능 Web Speech API => Google Text To Speech API로 전환
+- [x] TTS 기능 Web Speech API => Google Text To Speech API로 전환
 - [ ] 영어 외의 다양한 언어 지원 (일본어, 한국어)
 - [ ] 국제화 적용
 - [ ] SEO
@@ -97,4 +97,4 @@ Styled Components -> TailwindCSS
 - 그 후 OpenAI 공식 문서에서 제공하는 Best Practice를 참고하여 이전 대화 내용을 요약하는 기능을 구현했습니다.
 - 하지만 해당 기능을 API 요청할 때마다 사용하는 것은 대화의 텀이 길어지고, 비용 문제가 생길 것이라 판단했습니다.
 - 이를 해결하기 위해 GPT API에게 전송할 토큰 값을 체크하여 토큰 값이 한도에 가까웠을 때 해당 기능을 실행하도록 했
-습니다.
+  습니다.
