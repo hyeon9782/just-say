@@ -18,9 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <SupabaseProvider>
-          <main>{children}</main>
-        </SupabaseProvider>
+        {/* <SupabaseProvider> */}
+        <main>{children}</main>
+        {/* </SupabaseProvider> */}
       </body>
     </html>
   );

@@ -13,29 +13,44 @@ export async function POST(request: NextRequest) {
     console.log(messages);
     console.log(type);
 
-    // const functions = [
-    //   {
-    //     name: "get_suggested_answers",
-    //     description:
-    //       "Get three suggested answers that fit the answer you are talking about.",
-    //     parameters: {
-    //       type: "object",
-    //       properties: {
-    //         suggested: {
-    //           type: "string",
-    //           description:
-    //             "Get three suggested answers that fit the answer you are talking about.",
-    //         },
-    //         answer: {
-    //           type: "string",
-    //           description:
-    //             "Give the right answer to the question the user asked you",
-    //         },
-    //       },
-    //       required: ["suggested", "answer"],
-    //     },
-    //   },
-    // ];
+    const functions = {
+      type: "object",
+      properties: {
+        suggested: {
+          type: "object",
+          properties: {
+            suggested_a: {
+              type: "string",
+              description: "suggested answer A",
+            },
+            suggested_b: {
+              type: "string",
+              description: "suggested answer B",
+            },
+            suggested_c: {
+              type: "string",
+              description: "suggested answer C",
+            },
+            suggested_d: {
+              type: "string",
+              description: "suggested answer D",
+            },
+          },
+          required: [
+            "suggested_a",
+            "suggested_b",
+            "suggested_c",
+            "suggested_d",
+          ],
+        },
+        answer: {
+          type: "string",
+          description:
+            "Give the right answer to the question the user asked you",
+        },
+      },
+      required: ["suggested", "answer"],
+    };
 
     let system = "";
 
@@ -62,13 +77,26 @@ export async function POST(request: NextRequest) {
         },
         ...messages,
       ],
-      // functions,
-      // function_call: "auto",
+      functions: [
+        {
+          name: "get_suggested_answers",
+          description:
+            "Get four suggested answers that fit the answer you are talking about.",
+          parameters: functions,
+        },
+      ],
+      function_call: {
+        name: "get_suggested_answers",
+      },
     });
+
+    console.log(chatCompletion.choices[0].message);
+    console.log(chatCompletion.choices[0].message.function_call);
+    console.log(chatCompletion.choices[0].message.function_call?.arguments);
 
     return NextResponse.json({
       status: 200,
-      result: chatCompletion.choices[0].message.content,
+      result: chatCompletion.choices[0].message.function_call?.arguments,
       token: chatCompletion.usage?.total_tokens,
       chatCompletion: chatCompletion,
     });

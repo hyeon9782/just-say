@@ -28,12 +28,18 @@ const TalkButton = ({ success, selectedData }: Props) => {
     setLoading(true);
     const { result, token } = await openaiGPT(msgs, "rolePlaying");
 
-    msgs.push({ role: "assistant", content: result });
+    const data = JSON.parse(result);
+    console.log(data);
+
+    console.log(data.answer);
+    console.log(data.suggested);
+
+    msgs.push({ role: "assistant", content: data.answer });
 
     addMessage(msgs);
 
     const response = await googleTTS({
-      text: result,
+      text: data.answer,
       languageCode: selectedData.language_code,
       name: selectedData.voice_name,
     });
@@ -44,14 +50,20 @@ const TalkButton = ({ success, selectedData }: Props) => {
       await audioRef.current.play();
     }
 
-    if (result.includes("@")) {
+    if (data.answer.includes("@")) {
       success();
     }
 
     setLoading(false);
 
+    const answerList = data.suggested;
+
+    console.log(answerList);
+
+    // addSuggestion(answerList)
+
     // 추천 답변 기능이 켜져있다면 추천 답변 요청
-    if (true) {
+    if (false) {
       const { result } = await openaiGPT(msgs, "suggestion");
       const answerList = result.split("/");
       addSuggestion(answerList);
