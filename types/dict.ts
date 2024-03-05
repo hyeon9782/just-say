@@ -17,5 +17,19 @@ export interface Dict {
   };
   preparation: {
     preparation_title: string;
+    preparation_subtitle: string;
+    test_message: string;
+    test_start: string;
+    test_end: string;
+    start: string;
+  };
+  conversation: {
+    conversation_title: string;
+    menu: string;
+  };
+  result: {
+    success: string;
+    fail: string;
+    feedback_message: string;
   };
 }

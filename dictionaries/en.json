@@ -1,5 +1,35 @@
 {
-  "products": {
-    "cart": "Add to Cart"
+  "home": {
+    "title": "Just Say!",
+    "subtitle": "So that you can speak foreign languages ​​without fear. Say it until you get it!",
+    "start_button": "Start"
+  },
+  "language": {
+    "title": "Let’s go on a trip now! Please select a language to communicate in."
+  },
+  "city": {
+    "city_title": "Where should we go?",
+    "city_subtitle": "The accent of the city you choose will be reflected in the vocal room you will be speaking to."
+  },
+  "situation": {
+    "situation_title": "In what situation would you like to have a conversation?",
+    "situation_subtitle": "The situation you choose will be reflected in the person you are talking to."
+  },
+  "preparation": {
+    "preparation_title": "에 도착했습니다.",
+    "preparation_subtitle": "Shall I look at the menu and order what I want to eat?",
+    "test_message": "Please check if your speakers and microphone are working properly.",
+    "test_start": "Start microphone test",
+    "test_end": "End microphone test",
+    "start": "Start a conversation"
+  },
+  "conversation": {
+    "conversation_title": "Look at the menu and order what you want to eat at the cafe.",
+    "menu": "Menu"
+  },
+  "result": {
+    "success": "congratulations! 🎉",
+    "fail": "Oh, shall I say that again?",
+    "feedback_message": "How was the conversation?"
   }
 }

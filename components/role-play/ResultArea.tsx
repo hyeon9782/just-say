@@ -3,7 +3,8 @@ import ReplayModal from "../modals/ReplayModal";
 import LikeBox from "../result/LikeBox";
 import FullViewButton from "../result/FullViewButton";
 import { Message, SelectedData } from "@/types";
-import { Step } from "@/app/role-play/page";
+import { Dict } from "@/types/dict";
+import { Step } from "./RolePlayContainer";
 
 const TAGS = [
   {
@@ -27,16 +28,17 @@ type Props = {
   selectedData: SelectedData;
   isSuccess: boolean;
   moveStep: (step: Step) => void;
+  dict: Dict;
 };
 
-const ResultArea = ({ selectedData, isSuccess, moveStep }: Props) => {
+const ResultArea = ({ selectedData, isSuccess, moveStep, dict }: Props) => {
   const [replayModal, setReplayModal] = useState(false);
   return (
     <>
       <div className="flex flex-col justify-center h-full">
         <div className="text-center">
           <h1 className="text-3xl sm:text-6xl font-bold mb-[50px] leading-normal">
-            {isSuccess ? "축하합니다! 🎉" : "앗, 다시 말해볼까요?"}
+            {isSuccess ? dict.result.success : dict.result.fail}
           </h1>
         </div>
         <div className="flex flex-col items-center sm:flex-row justify-center gap-[20px]">
@@ -51,7 +53,9 @@ const ResultArea = ({ selectedData, isSuccess, moveStep }: Props) => {
           ))}
         </div>
         <div className="flex flex-col items-center my-[30px]">
-          <span className="text-lg sm:text-xl">대화는 어떠셨나요?</span>
+          <span className="text-lg sm:text-xl">
+            {dict.result.feedback_message}
+          </span>
           <LikeBox />
           <FullViewButton onClick={() => setReplayModal(true)} />
         </div>

@@ -7,13 +7,15 @@ import { CloseIcon } from "@/composables/icons";
 import Suggestion from "../talk/Suggestion";
 import Image from "next/image";
 import { SelectedData } from "@/types";
+import { Dict } from "@/types/dict";
 
 type Props = {
   selectedData: SelectedData;
   result: (result: boolean) => void;
+  dict: Dict;
 };
 
-const ConversationArea = ({ selectedData, result }: Props) => {
+const ConversationArea = ({ selectedData, result, dict }: Props) => {
   console.log("ConversationArea rendered");
   const [menuModal, setMenuModal] = useState(false);
   const [confirmModal, setConfirmModal] = useState(false);
@@ -32,7 +34,7 @@ const ConversationArea = ({ selectedData, result }: Props) => {
           </div>
           <div className="flex w-full justify-around h-[20%] px-[10px]">
             <h1 className="text-xl sm:text-4xl font-bold mb-[30px]">
-              메뉴를 보고, 카페에서 내가 먹고 싶은 것을 주문해 보세요.
+              {dict.conversation.conversation_title}
             </h1>
             <div
               className="flex flex-col items-center"
@@ -44,7 +46,7 @@ const ConversationArea = ({ selectedData, result }: Props) => {
                 width={50}
                 height={40}
               />
-              <span className="text-sm">메뉴판</span>
+              <span className="text-sm">{dict.conversation.menu}</span>
             </div>
           </div>
         </div>

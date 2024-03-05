@@ -1,20 +1,22 @@
 import Button from "@/composables/Button";
 import { SELECT_DATA } from "@/constants/select-data";
 import { SelectedData } from "@/types";
+import { Dict } from "@/types/dict";
 
 type Props = {
   onSelect: (key: string, value: string) => void;
   selectedData: SelectedData;
+  dict: Dict;
 };
-const SituationArea = ({ onSelect, selectedData }: Props) => {
+const SituationArea = ({ onSelect, selectedData, dict }: Props) => {
   return (
     <div className="flex flex-col justify-center h-full px-[10px]">
       <div className="text-center">
         <h1 className="text-2xl sm:text-4xl font-bold pb-[30px]">
-          어떤 상황에서 대화를 하고 싶으세요?
+          {dict.situation.situation_title}
         </h1>
         <p className="text-lg sm:text-xl font-400 pb-[60px]">
-          선택한 상황이 대화할 상대방에게 반영됩니다.
+          {dict.situation.situation_subtitle}
         </p>
       </div>
       <div className="flex flex-col w-[300px] mx-auto sm:w-full sm:flex-row gap-[20px] sm:gap-[50px]">
