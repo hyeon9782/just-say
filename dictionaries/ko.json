@@ -1,0 +1,21 @@
+{
+  "home": {
+    "title": "Just Say!",
+    "subtitle": "두려움없이 외국어를 말할 수 있도록. 될 때까지 말해보세요!",
+    "start_button": "시작하기"
+  },
+  "language": {
+    "title": "이제부터 여행을 떠나봅시다! 대화할 언어를 골라주세요."
+  },
+  "city": {
+    "city_title": "어디로 떠나볼까요?",
+    "city_subtitle": "선택한 도시의 억양이 내가 대화할 성대방에게 반영됩니다."
+  },
+  "situation": {
+    "situation_title": "어떤 상황에서 대화를 하고 싶으세요?",
+    "situation_subtitle": "선택한 상황이 대화할 상대방에게 반영됩니다."
+  },
+  "preparation": {
+    "preparation_title": "에 도착했습니다."
+  }
+}

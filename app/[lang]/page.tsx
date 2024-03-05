@@ -2,13 +2,22 @@ import StartButton from "@/components/StartButton";
 import Container from "@/composables/Container";
 import Image from "next/image";
 
-export default function HomePage() {
+import { getDictionary } from "@/dictionary";
+import { Dict } from "@/types/dict";
+import { Locale } from "@/i18n.config";
+
+export default async function HomePage({
+  params: { lang },
+}: {
+  params: { lang: Locale };
+}) {
+  const dict: Dict = (await getDictionary(lang)) as Dict;
   return (
     <Container>
       <div className="flex items-center justify-center h-full">
         <div className="sm:w-[40%] text-center max-w-md">
           <h1 className="text-4xl sm:text-6xl font-bold mb-[50px]">
-            Just Say!
+            {dict.home.title}
           </h1>
           <Image
             className="sm:hidden mb-[40px]"
@@ -18,10 +27,8 @@ export default function HomePage() {
             width={300}
             height={300}
           />
-          <p className="text-xl mb-[50px]">
-            두려움없이 외국어를 말할 수 있도록. <br />될 때까지 말해보세요!
-          </p>
-          <StartButton>시작하기</StartButton>
+          <p className="text-xl mb-[50px]">{dict.home.subtitle}</p>
+          <StartButton>{dict.home.start_button}</StartButton>
         </div>
         <div className="hidden sm:block sm:w-[40%] ">
           <Image

@@ -9,19 +9,25 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@formatjs/intl-localematcher": "^0.5.4",
     "@supabase/auth-helpers-nextjs": "^0.9.0",
     "@supabase/auth-helpers-react": "^0.4.2",
     "@supabase/auth-ui-react": "^0.4.7",
     "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/supabase-js": "^2.39.7",
+    "i18next": "^23.10.0",
+    "negotiator": "^0.6.3",
     "next": "latest",
+    "next-i18next": "^15.2.0",
     "openai": "^4.28.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-i18next": "^14.0.5",
     "react-icons": "^4.11.0",
     "zustand": "^4.4.1"
   },
   "devDependencies": {
+    "@types/negotiator": "^0.6.3",
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
