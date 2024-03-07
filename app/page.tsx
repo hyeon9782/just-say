@@ -1,20 +1,18 @@
 import StartButton from "@/components/StartButton";
 import Container from "@/composables/Container";
 import Image from "next/image";
-
-import { getDictionary } from "@/dictionary";
-import { Dict } from "@/types/dict";
-import { Locale } from "@/i18n.config";
-
 import LoginButton from "@/components/common/LoginButton";
+import { createClient } from "@/libs/supabase/server";
+import { redirect } from "next/navigation";
 
-export default async function HomePage({
-  params: { lang },
-}: {
-  params: { lang: Locale };
-}) {
-  const dict: Dict = (await getDictionary(lang)) as Dict;
+export default async function HomePage() {
+  const supabase = createClient();
 
+  const { data, error } = await supabase.auth.getUser();
+
+  // if (error || !data?.user) {
+
+  // }
   return (
     <Container>
       <div className="flex items-center justify-center h-full">
@@ -23,6 +21,7 @@ export default async function HomePage({
             {/* {dict.home.title} */}
             Just Say!
           </h1>
+          <div>{data?.user?.email}</div>
           <Image
             className="sm:hidden mb-[40px]"
             priority
