@@ -1,6 +1,10 @@
 import { Message } from "@/types";
 
-const openaiGPT = async (messages: Message[], type: string) => {
+const openaiGPT = async (
+  messages: Message[],
+  type: string,
+  suggested: boolean
+) => {
   try {
     console.log("openaiGPT");
 
@@ -9,7 +13,7 @@ const openaiGPT = async (messages: Message[], type: string) => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ messages, type }),
+      body: JSON.stringify({ messages, type, suggested }),
     }).then((res) => res.json());
 
     return response;

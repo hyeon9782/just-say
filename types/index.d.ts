@@ -34,6 +34,7 @@ export type TextToSpeech = {
 export type InitGPT = {
   lang: string;
   type: string;
+  suggested: boolean;
 };
 
 export type Message = {

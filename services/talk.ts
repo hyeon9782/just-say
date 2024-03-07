@@ -2,7 +2,7 @@ import { CAFE } from "@/constants/cafe";
 import { VOICE_NAME } from "@/constants/google";
 import { InitGPT, Message } from "@/types";
 
-const initGPT = ({ type, lang }: InitGPT): string => {
+const initGPT = ({ type, lang, suggested }: InitGPT): string => {
   let menu_num = CAFE.menu_list.length;
   const menus = CAFE.menu_list.map((item) => item.menu);
   const prices = CAFE.menu_list.map((item) => item.price);
@@ -47,6 +47,11 @@ const initGPT = ({ type, lang }: InitGPT): string => {
     "add @ at the end of conversation if the order and payment made by user was successful.";
   notice_msg +=
     "The following is the start of conversation with customer and start talking 'Welcome!' include another one sentence.";
+
+  if (suggested) {
+    notice_msg +=
+      "Based on the conversation between the user and GPT, the user will receive 4 recommended answers to answer GPT's questions.";
+  }
   define_bot_role += notice_msg;
 
   // const system = { role: "system", content: define_bot_role };

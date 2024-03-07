@@ -1,5 +1,4 @@
 import { GPT_3_5_TURBO_0613 } from "@/constants/prompt";
-import { SUGGESTION } from "@/constants/suggestion";
 import { SUMMARIZE } from "@/constants/summarize";
 import { openai } from "@/libs/openai";
 import { initGPT } from "@/services/talk";
@@ -7,13 +6,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
-    console.log("Route 들어옴");
+    const { messages, type, suggested } = await request.json();
 
-    const { messages, type } = await request.json();
-    console.log(messages);
-    console.log(type);
-
-    const functions = {
+    const suggestedFunctions = {
       type: "object",
       properties: {
         suggested: {
@@ -52,21 +47,28 @@ export async function POST(request: NextRequest) {
       required: ["suggested", "answer"],
     };
 
+    const basicFunctions = {
+      type: "object",
+      properties: {
+        answer: {
+          type: "string",
+          description:
+            "Give the right answer to the question the user asked you",
+        },
+      },
+      required: ["answer"],
+    };
+
     let system = "";
 
     switch (type) {
       case "rolePlaying":
-        system = initGPT({ type: "cafe", lang: "English" });
-        break;
-      case "suggestion":
-        system = SUGGESTION;
+        system = initGPT({ type: "cafe", lang: "English", suggested });
         break;
       case "summarize":
         system = SUMMARIZE;
         break;
     }
-
-    console.log(system);
 
     const chatCompletion = await openai.chat.completions.create({
       model: GPT_3_5_TURBO_0613,
@@ -82,17 +84,13 @@ export async function POST(request: NextRequest) {
           name: "get_suggested_answers",
           description:
             "Get four suggested answers that fit the answer you are talking about.",
-          parameters: functions,
+          parameters: suggested ? suggestedFunctions : basicFunctions,
         },
       ],
       function_call: {
         name: "get_suggested_answers",
       },
     });
-
-    console.log(chatCompletion.choices[0].message);
-    console.log(chatCompletion.choices[0].message.function_call);
-    console.log(chatCompletion.choices[0].message.function_call?.arguments);
 
     return NextResponse.json({
       status: 200,

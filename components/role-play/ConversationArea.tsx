@@ -8,6 +8,8 @@ import Suggestion from "../talk/Suggestion";
 import Image from "next/image";
 import { SelectedData } from "@/types";
 import { Dict } from "@/types/dict";
+import ToogleSuggestion from "../talk/ToogleSuggestion";
+import useIsSuggested from "@/stores/useIsSuggested";
 
 type Props = {
   selectedData: SelectedData;
@@ -19,18 +21,20 @@ const ConversationArea = ({ selectedData, result, dict }: Props) => {
   console.log("ConversationArea rendered");
   const [menuModal, setMenuModal] = useState(false);
   const [confirmModal, setConfirmModal] = useState(false);
+  const { isSuggested } = useIsSuggested();
   return (
     <>
       <div className="h-full">
         <div className="h-[70%] flex flex-col bg-gray-100">
           <div className="flex justify-end h-[10%]">
+            <ToogleSuggestion />
             <CloseIcon
               className="p-[10px] text-black text-6xl"
               onClick={() => setConfirmModal(true)}
             />
           </div>
           <div className="h-[70%] text-center">
-            <Suggestion />
+            {isSuggested && <Suggestion />}
           </div>
           <div className="flex w-full justify-around h-[20%] px-[10px]">
             <h1 className="text-xl sm:text-4xl font-bold mb-[30px]">
@@ -58,6 +62,7 @@ const ConversationArea = ({ selectedData, result, dict }: Props) => {
           <TalkButton
             success={() => result(true)}
             selectedData={selectedData}
+            isSuggested={isSuggested}
           />
         </div>
       </div>

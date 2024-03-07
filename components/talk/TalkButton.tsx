@@ -13,12 +13,14 @@ import { Message, SelectedData } from "@/types";
 type Props = {
   success: () => void;
   selectedData: SelectedData;
+  isSuggested: boolean;
 };
-const TalkButton = ({ success, selectedData }: Props) => {
+const TalkButton = ({ success, selectedData, isSuggested }: Props) => {
   console.log("TalkButtonTest rendered");
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isRecording, setIsRecording] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const { addSuggestion } = useSuggestionStore();
   const { messages, addMessage } = useMessageStore();
 
@@ -26,15 +28,11 @@ const TalkButton = ({ success, selectedData }: Props) => {
     // 입력 값이 없을 경우 GPT 호출 방지
     if (msgs[msgs.length - 1].content === "") return;
     setLoading(true);
-    const { result, token } = await openaiGPT(msgs, "rolePlaying");
+    const { result, token } = await openaiGPT(msgs, "rolePlaying", isSuggested);
 
     console.log(result);
 
     const data = JSON.parse(result);
-    console.log(data);
-
-    console.log(data.answer);
-    console.log(data.suggested);
 
     msgs.push({ role: "assistant", content: data.answer });
 
@@ -58,22 +56,17 @@ const TalkButton = ({ success, selectedData }: Props) => {
 
     setLoading(false);
 
-    const answerList = data.suggested;
+    if (isSuggested) {
+      const answerList: string[] = Object.values(data.suggested);
 
-    console.log(answerList);
+      console.log(answerList);
 
-    // addSuggestion(answerList)
-
-    // 추천 답변 기능이 켜져있다면 추천 답변 요청
-    if (false) {
-      const { result } = await openaiGPT(msgs, "suggestion");
-      const answerList = result.split("/");
       addSuggestion(answerList);
     }
 
     // token이 특정 값 이상이면 내용을 요약하자
     if (token > 3500) {
-      const { result } = await openaiGPT(msgs, "summarize");
+      const { result } = await openaiGPT(msgs, "summarize", false);
 
       addMessage([
         {
