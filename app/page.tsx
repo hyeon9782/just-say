@@ -6,12 +6,15 @@ import { getDictionary } from "@/dictionary";
 import { Dict } from "@/types/dict";
 import { Locale } from "@/i18n.config";
 
+import LoginButton from "@/components/common/LoginButton";
+
 export default async function HomePage({
   params: { lang },
 }: {
   params: { lang: Locale };
 }) {
   const dict: Dict = (await getDictionary(lang)) as Dict;
+
   return (
     <Container>
       <div className="flex items-center justify-center h-full">
@@ -36,6 +39,7 @@ export default async function HomePage({
             {/* {dict.home.start_button} */}
             시작하기
           </StartButton>
+          <LoginButton />
         </div>
         <div className="hidden sm:block sm:w-[40%] ">
           <Image
