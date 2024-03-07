@@ -28,6 +28,8 @@ const TalkButton = ({ success, selectedData }: Props) => {
     setLoading(true);
     const { result, token } = await openaiGPT(msgs, "rolePlaying");
 
+    console.log(result);
+
     const data = JSON.parse(result);
     console.log(data);
 

@@ -31,11 +31,14 @@ const PreparationArea = ({ selectedData, onNext, dict }: Props) => {
       <div className="text-center">
         <h1 className="text-2xl sm:text-4xl font-bold mb-[20px] sm:mb-[50px] leading-normal">
           {city?.ko} {situation?.ko}
-          {dict.preparation.preparation_title} <br />
-          {dict.preparation.preparation_subtitle}
+          {/* {dict.preparation.preparation_title} <br />
+          {dict.preparation.preparation_subtitle} */}
+          에 도착했습니다. <br />
+          메뉴를 보고, 내가 먹고 싶은 것을 주문해 볼까요?
         </h1>
         <p className="text-md sm:text-xl font-400 pb-[30px] sm:pb-[60px]">
-          {dict.preparation.test_message}
+          {/* {dict.preparation.test_message} */}내 스피커와 마이크가 잘
+          동작하는지 확인해 주세요.
         </p>
       </div>
       <div className="flex justify-center pb-[20px] sm:pb-[30px]">
@@ -45,9 +48,7 @@ const PreparationArea = ({ selectedData, onNext, dict }: Props) => {
       </div>
       <div className="flex flex-col w-[70%] m-auto my-0 sm:w-full sm:flex-row gap-[10px] sm:gap-[50px]">
         <Button type="fill" size="lg" onClick={handleMikeTest}>
-          {isRecording
-            ? dict.preparation.test_end
-            : dict.preparation.test_start}
+          {isRecording ? "마이크 테스트 종료" : "마이크 테스트 시작"}
         </Button>
         {/* <button
           onMouseDown={startRecording}
@@ -58,7 +59,8 @@ const PreparationArea = ({ selectedData, onNext, dict }: Props) => {
           {isRecording ? "마이크 테스트 종료" : "마이크 테스트 시작"}
         </button> */}
         <Button type="fill" size="lg" onClick={onNext}>
-          {dict.preparation.start}
+          {/* {dict.preparation.start} */}
+          대화 시작
         </Button>
       </div>
     </div>

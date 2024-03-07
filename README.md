@@ -72,12 +72,12 @@ Styled Components -> TailwindCSS
 
 ## Will Update
 
-- [ ] GPT Function calling 기능으로 정형화된 반환값 받기기
+- [x] GPT Function calling 기능으로 정형화된 반환값 받기기
 - [ ] 사용자가 AI와 나눈 대화를 기준으로 피드백 기능
 - [ ] STT 기능 Web Speech API => Google Speech To Text API로 전환
 - [x] TTS 기능 Web Speech API => Google Text To Speech API로 전환
 - [ ] 영어 외의 다양한 언어 지원 (일본어, 한국어)
-- [ ] 국제화 적용
+- [x] 국제화 적용
 - [ ] SEO
 - [ ] 다크 모드 적용
 - [ ] 카페 외의 다른 다양한 상황 지원 (공항, 택시)

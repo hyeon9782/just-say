@@ -38,7 +38,8 @@ const ResultArea = ({ selectedData, isSuccess, moveStep, dict }: Props) => {
       <div className="flex flex-col justify-center h-full">
         <div className="text-center">
           <h1 className="text-3xl sm:text-6xl font-bold mb-[50px] leading-normal">
-            {isSuccess ? dict.result.success : dict.result.fail}
+            {/* {isSuccess ? dict.result.success : dict.result.fail} */}
+            {isSuccess ? "축하합니다! 🎉" : "앗, 다시 말해볼까요?"}
           </h1>
         </div>
         <div className="flex flex-col items-center sm:flex-row justify-center gap-[20px]">
@@ -54,7 +55,8 @@ const ResultArea = ({ selectedData, isSuccess, moveStep, dict }: Props) => {
         </div>
         <div className="flex flex-col items-center my-[30px]">
           <span className="text-lg sm:text-xl">
-            {dict.result.feedback_message}
+            {/* {dict.result.feedback_message} */}
+            대화는 어떠셨나요?
           </span>
           <LikeBox />
           <FullViewButton onClick={() => setReplayModal(true)} />

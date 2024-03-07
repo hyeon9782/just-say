@@ -13,10 +13,12 @@ const SituationArea = ({ onSelect, selectedData, dict }: Props) => {
     <div className="flex flex-col justify-center h-full px-[10px]">
       <div className="text-center">
         <h1 className="text-2xl sm:text-4xl font-bold pb-[30px]">
-          {dict.situation.situation_title}
+          {/* {dict.situation.situation_title} */}
+          어떤 상황에서 대화를 하고 싶으세요?
         </h1>
         <p className="text-lg sm:text-xl font-400 pb-[60px]">
-          {dict.situation.situation_subtitle}
+          {/* {dict.situation.situation_subtitle} */}
+          선택한 상황이 대화할 상대방에게 반영됩니다.
         </p>
       </div>
       <div className="flex flex-col w-[300px] mx-auto sm:w-full sm:flex-row gap-[20px] sm:gap-[50px]">
